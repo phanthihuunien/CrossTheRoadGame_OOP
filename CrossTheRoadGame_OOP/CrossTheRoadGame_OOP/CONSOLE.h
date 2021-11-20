@@ -1,9 +1,12 @@
 #pragma once
 #include <Windows.h>
-class Console {
-public:
-	
-	static void FixConsoleWindow();
-	static void gotoXY(int x, int y);
-	
-};
+#include<iostream>
+#include<fstream>
+#include<string>
+using namespace std;
+
+void FixConsoleWindow();
+void gotoXY(int x, int y);
+void ShowConsoleCursor(bool showFlag);
+void printTitle();
+void SET_COLOR(int color);
