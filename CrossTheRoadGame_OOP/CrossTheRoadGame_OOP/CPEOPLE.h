@@ -2,20 +2,27 @@
 
 #include"CVEHICLE.h"
 #include"CANIMAL.h"
-
+#include"CONSOLE.h"
 class CPEOPLE {
 private:
 	int mX, mY;
 	bool mState; //Trạng thái sống chết
+	int score;
+	int level;
 public:
 	CPEOPLE();
 	void Up(int);
 	void Left(int);
 	void Right(int);
 	void Down(int);
-	bool isImpact(const CVEHICLE*&);
-	bool isImpact(const CANIMAL*&);
+	bool isImpactV(const CVEHICLE*&);
+	bool isImpactA(const CANIMAL*&);
 	bool isFinish();
 	bool isDead();
+	void DrawPLayer();
+	//void Move(int key)
+	int getLevel();
+	int getScore();
+	void LevelUp();
 };
 
