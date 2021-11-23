@@ -89,3 +89,13 @@ int CPEOPLE::getScore() {
 void CPEOPLE::LevelUp() {
     if (level < 10) level++;
 }
+
+void CPEOPLE::soundCar()
+{
+	PlaySound(L"sound\\car.wav", NULL, SND_FILENAME);
+}
+
+void CPEOPLE::soundTruck()
+{
+	PlaySound(L"sound\\truck.wav", NULL, SND_FILENAME);
+}
