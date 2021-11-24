@@ -1,16 +1,37 @@
 #include"CANIMAL.h"
-void CANIMAL::Move(int x, int y)
-{
-	prevX = mX;
-	prevY = mY;
+CANIMAL::CANIMAL() {
+	mX = 0;
+	mY = 0;
+}
+CANIMAL::CANIMAL(int x, int y) {
 	mX = x;
 	mY = y;
+}
+void CANIMAL::set(int x, int y) {
+	mX = x;
+	mY = y;
+}
+int& CANIMAL::getX() {
+	return mX;
+}
+int& CANIMAL::getY() {
+	return mY;
+}
+CANIMAL::~CANIMAL() {}
+
+void CANIMAL::Move()
+{
+	mX++;
+	if (mX == MAXWIDTH - 2)
+	{
+		mX = 3;
+	}
 };
 
 void CANIMAL::Draw() {
-	for (int i = 0; i < START_X; ++i) {
-		gotoXY(prevX, prevY + i);
-		for (int j = 0; j < START_Y; ++j) {
+	for (int i = 0; i < 3; ++i) {
+		gotoXY(mX-1, mY-1 + i);
+		for (int j = 0; j <4; ++j) {
 			cout << ' ';
 		}
 	}

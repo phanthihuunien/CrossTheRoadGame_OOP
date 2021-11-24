@@ -6,6 +6,7 @@
 #include"CDINAUSOR.h"
 #include"CBIRD.h"
 #include"CONSOLE.h"
+
 class CGAME {
 private:
 	CTRUCK* axt;
@@ -19,8 +20,10 @@ public:
 	void drawBackground();//Vẽ background
 	~CGAME(); // Hủy tài nguyên đã cấp phát
 	CPEOPLE getPeople();//Lấy thông tin người
-	CVEHICLE* getVehicle();//Lấy danh sách các xe
-	CANIMAL* getAnimal(); //Lấy danh sách các thú
+	CTRUCK* getTruck();
+	CCAR* getCar();
+	CBIRD* getBird();
+	CDINAUSOR* getDinausor();
 	void resetGame(); // Thực hiện thiết lập lại toàn bộ dữ liệu như lúc đầu
 	void exitGame(HANDLE); // Thực hiện thoát Thread 
 	void startGame(); // Thực hiện bắt đầu vào trò chơi
