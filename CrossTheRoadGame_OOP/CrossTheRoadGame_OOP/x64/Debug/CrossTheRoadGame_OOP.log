@@ -1,0 +1,15 @@
+﻿  CANIMAL.cpp
+  CBIRD.cpp
+  CCAR.cpp
+  CDINAUSOR.cpp
+  CGAME.cpp
+  CONSOLE.cpp
+  CPEOPLE.cpp
+C:\Users\T14\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CPEOPLE.cpp(93,15): error C2039: 'soundCar': is not a member of 'CPEOPLE'
+C:\Users\T14\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CPEOPLE.h(6): message : see declaration of 'CPEOPLE'
+C:\Users\T14\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CPEOPLE.cpp(98,15): error C2039: 'soundTruck': is not a member of 'CPEOPLE'
+C:\Users\T14\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CPEOPLE.h(6): message : see declaration of 'CPEOPLE'
+  CTRUCK.cpp
+  CVEHICLE.cpp
+  MAIN.cpp
+  Generating Code...

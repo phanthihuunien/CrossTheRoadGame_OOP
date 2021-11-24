@@ -1,4 +1,7 @@
 #include"CBIRD.h"
+CBIRD::CBIRD() :CANIMAL() {}
+CBIRD::CBIRD(int x, int y):CANIMAL(x,y) {}
+
 void CBIRD::Draw() {
 	CANIMAL::Draw();
 	gotoXY(mX, mY);cout << "<@__";
