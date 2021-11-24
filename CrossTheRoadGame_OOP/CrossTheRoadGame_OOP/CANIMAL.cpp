@@ -28,11 +28,4 @@ void CANIMAL::Move()
 	}
 };
 
-void CANIMAL::Draw() {
-	for (int i = 0; i < 3; ++i) {
-		gotoXY(mX-1, mY-1 + i);
-		for (int j = 0; j <4; ++j) {
-			cout << ' ';
-		}
-	}
-};
+

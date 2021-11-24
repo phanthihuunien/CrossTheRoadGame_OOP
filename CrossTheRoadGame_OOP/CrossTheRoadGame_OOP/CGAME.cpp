@@ -50,12 +50,23 @@ CDINAUSOR* CGAME::getDinausor() {
 void CGAME::updatePosAnimal() {
     int level = getPeople().getLevel();
     for (int i = 0; i < level; i++) {
+        ac[i].deleteChar();
         ac[i].Move();
-        ac[i].Draw();
     }
     for (int i = 0; i < level; i++) {
+        akl[i].deleteChar();
         akl[i].Move();
-        akl[i].Draw();
+    }
+}
+void CGAME::updatePosVehicle() {
+    int level = getPeople().getLevel();
+    for (int i = 0; i < level; i++) {
+        axt[i].deleteChar();
+        axt[i].Move();
+    }
+    for (int i = 0; i < level; i++) {
+        axh[i].deleteChar();
+        axh[i].Move();
     }
 }
 CGAME::~CGAME()

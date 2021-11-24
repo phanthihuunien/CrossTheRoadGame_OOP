@@ -5,13 +5,20 @@
 using namespace std;
 
 void CCAR::Draw() {
-	CVEHICLE::Draw();
-	//GotoXY(mX, mY);
-	//cout << " "<<char(220)<<char(220)<<" ";
-	gotoXY(mX, mY + 1);
-	cout << char(220)<<char(219)<<char(219)<<char(220);
-	gotoXY(mX, mY + 2);
-	cout << "o  o";
+	gotoXY(mX, mY);cout<<char(219);
+	gotoXY(mX, mY - 1);cout<<char(254);
+	gotoXY(mX - 1, mY);cout<<char(219);
+	gotoXY(mX + 1, mY);cout<<char(219);
+}
+void CCAR::deleteChar() {
+	gotoXY(mX, mY);
+	cout << ' ';
+	gotoXY(mX, mY - 1);
+	cout << ' ';
+	gotoXY(mX - 1, mY);
+	cout << ' ';
+	gotoXY(mX + 1, mY);
+	cout << ' ';
 }
 
 void CCAR::increaseNumCar() {

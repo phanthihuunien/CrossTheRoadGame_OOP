@@ -3,12 +3,13 @@
 #include"CONSOLE.h"
 class CVEHICLE {
 protected:
-	int mX, mY,prevX,prevY;
+	int mX, mY;
 public:
 
 	friend class CPEOPLE;
-	virtual void Move(int, int);
-	virtual void Draw();
+	 void Move();
+	 virtual void Draw() {}
+	 virtual void deleteChar(){}
 	CVEHICLE();
 	CVEHICLE(int x, int y);
 	void set(int x, int y);

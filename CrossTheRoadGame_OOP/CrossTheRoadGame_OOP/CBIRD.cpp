@@ -3,10 +3,18 @@ CBIRD::CBIRD() :CANIMAL() {}
 CBIRD::CBIRD(int x, int y):CANIMAL(x,y) {}
 
 void CBIRD::Draw() {
-	CANIMAL::Draw();
-	gotoXY(mX, mY);cout << "<@__";
-	gotoXY(mX, mY + 1);cout << "(_-/";
-	gotoXY(mX, mY + 2);cout << " \\ \\";
+	gotoXY(mX, mY); cout << char(219);
+	gotoXY(mX - 1, mY - 1); cout << char(219);
+	gotoXY(mX + 1, mY - 1); cout << char(219);
+
+}
+void CBIRD::deleteChar() {
+	gotoXY(mX, mY);
+	cout << ' ';
+	gotoXY(mX - 1, mY - 1);
+	cout << ' ';
+	gotoXY(mX + 1, mY - 1);
+	cout << ' ';
 
 }
 void CBIRD::Tell() {

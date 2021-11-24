@@ -6,8 +6,9 @@ protected:
 	int mX, mY;
 public:
 	friend class CPEOPLE;
-	virtual void Move();
-	virtual void Draw();
+	 void Move();
+	 virtual void Draw() {}
+	 virtual void deleteChar() {}
 	virtual void Tell() = 0;
 	CANIMAL();
 	CANIMAL(int x, int y);
