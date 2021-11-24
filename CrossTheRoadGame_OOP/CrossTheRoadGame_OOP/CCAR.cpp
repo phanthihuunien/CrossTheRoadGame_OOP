@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+int CCAR::numCar =5;
+
 void CCAR::Draw() {
 	gotoXY(mX, mY);cout<<char(219);
 	gotoXY(mX, mY - 1);cout<<char(254);
