@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+int CCAR::numCar =5;
+
 void CCAR::Draw() {
 	CVEHICLE::Draw();
 	//GotoXY(mX, mY);

@@ -17,7 +17,6 @@ public:
 	CGAME(); //Chuẩn bị dữ liệu cho tất cả các đối tượng 
 	void drawGame(); //Thực hiện vẽ trò chơi ra màn hình sau khi có dữ liệu
 	void drawBackground();//Vẽ background
-	void drawLane(); //in làn đường
 	~CGAME(); // Hủy tài nguyên đã cấp phát
 	CPEOPLE getPeople();//Lấy thông tin người
 	CVEHICLE* getVehicle();//Lấy danh sách các xe

@@ -27,25 +27,11 @@ CGAME::~CGAME()
 {
 }
 
-void CGAME::drawLane()
-{
-	for (int i = 1; i < MAXWIDTH; i++)
-	for (int j = 1; j < MAXHEIGHT; j++){
-		if (j % 4 == 0)
-		{
-			if (j != MAXHEIGHT - 1)
-			{
-				gotoXY(i, j);
-				cout << "_";
-			}
-		}
-	}
-}
 
 void CGAME::startGame(){
 	system("cls");
 	DrawBoard(0, 0, MAXWIDTH, MAXHEIGHT);
-	this->drawLane();
+	this->drawBackground();
 
 	gotoXY(MAXWIDTH / 6 + 2, MAXHEIGHT + 3);
 	cout << "SAVE (L)";
