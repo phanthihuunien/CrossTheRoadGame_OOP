@@ -66,16 +66,35 @@ CGAME::~CGAME()
     delete[]ac;
 }
 
-CPEOPLE CGAME::getPeople() {
-    return cn;
+void CGAME::drawLane()
+{
+	for (int i = 1; i < MAXWIDTH; i++)
+	for (int j = 1; j < MAXHEIGHT; j++){
+		if (j % 4 == 0)
+		{
+			if (j != MAXHEIGHT - 1)
+			{
+				gotoXY(i, j);
+				cout << "_";
+			}
+		}
+	}
 }
-void CGAME::updatePosPeople(char input) {
-    if (input == 'w')
-        cn.Up(4);
-    else if (input == 'a')
-        cn.Left(2);
-    else if (input == 'd')
-        cn.Right(2);
-    else if (input == 's')
-        cn.Down(4);
+
+void CGAME::startGame(){
+	system("cls");
+	DrawBoard(0, 0, MAXWIDTH, MAXHEIGHT);
+	this->drawLane();
+
+	gotoXY(MAXWIDTH / 6 + 2, MAXHEIGHT + 3);
+	cout << "SAVE (L)";
+	gotoXY(MAXWIDTH / 6 * 2 + 2, MAXHEIGHT + 3);
+	cout << "LOAD (T)";
+	gotoXY(MAXWIDTH / 6 * 3 + 2, MAXHEIGHT + 3);
+	cout << "EXIT (ESC)";
+	gotoXY(MAXWIDTH / 6 * 4 + 2, MAXHEIGHT + 3);
+	cout << "PAUSE (P) ";
+
+	this->getPeople().isLive() = true;
 }
+

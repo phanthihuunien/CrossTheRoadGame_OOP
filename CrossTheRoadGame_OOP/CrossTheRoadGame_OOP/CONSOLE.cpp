@@ -44,3 +44,19 @@ void printTitle() {
 		cout << buffer;
 	}
 }
+
+void DrawBoard(int x, int y, int width, int height){
+
+	SET_COLOR(8);
+	gotoXY(x, y); cout << char(219);
+	for (int i = 1; i < width; i++) cout << char(223);
+	cout << char(219);
+	gotoXY(x, height + y); cout << char(223);
+	for (int i = 1; i < width; i++) cout << char(223);
+	cout << char(223);
+	for (int i = y + 1; i < height + y; i++){
+		gotoXY(x, i); cout << char(219);
+		gotoXY(x + width, i); cout << char(219);
+	}
+	SET_COLOR(15);
+}
