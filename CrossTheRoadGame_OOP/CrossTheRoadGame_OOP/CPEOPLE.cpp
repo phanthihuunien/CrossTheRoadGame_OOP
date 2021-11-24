@@ -64,6 +64,10 @@ bool CPEOPLE::isFinish() {
     return false;
 }
 
+bool CPEOPLE::isLive(){
+	return mState;
+}
+
 bool CPEOPLE::isDead() {
     return !mState;
 }
@@ -92,10 +96,11 @@ void CPEOPLE::LevelUp() {
 
 void CPEOPLE::soundCar()
 {
-	PlaySound(L"sound\\car.wav", NULL, SND_FILENAME);
+	PlaySound(L"car.wav", NULL, SND_FILENAME);
 }
 
 void CPEOPLE::soundTruck()
 {
-	PlaySound(L"sound\\truck.wav", NULL, SND_FILENAME);
+	PlaySound(L"truck.wav", NULL, SND_FILENAME);
 }
+

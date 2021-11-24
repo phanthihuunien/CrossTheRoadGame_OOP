@@ -26,3 +26,36 @@ void CGAME::drawBackground() {
 CGAME::~CGAME()
 {
 }
+
+void CGAME::drawLane()
+{
+	for (int i = 1; i < MAXWIDTH; i++)
+	for (int j = 1; j < MAXHEIGHT; j++){
+		if (j % 4 == 0)
+		{
+			if (j != MAXHEIGHT - 1)
+			{
+				gotoXY(i, j);
+				cout << "_";
+			}
+		}
+	}
+}
+
+void CGAME::startGame(){
+	system("cls");
+	DrawBoard(0, 0, MAXWIDTH, MAXHEIGHT);
+	this->drawLane();
+
+	gotoXY(MAXWIDTH / 6 + 2, MAXHEIGHT + 3);
+	cout << "SAVE (L)";
+	gotoXY(MAXWIDTH / 6 * 2 + 2, MAXHEIGHT + 3);
+	cout << "LOAD (T)";
+	gotoXY(MAXWIDTH / 6 * 3 + 2, MAXHEIGHT + 3);
+	cout << "EXIT (ESC)";
+	gotoXY(MAXWIDTH / 6 * 4 + 2, MAXHEIGHT + 3);
+	cout << "PAUSE (P) ";
+
+	this->getPeople().isLive() = true;
+}
+

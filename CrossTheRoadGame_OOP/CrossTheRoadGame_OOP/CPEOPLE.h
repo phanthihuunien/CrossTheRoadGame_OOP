@@ -18,11 +18,15 @@ public:
 	bool isImpactV(const CVEHICLE*&);
 	bool isImpactA(const CANIMAL*&);
 	bool isFinish();
+	bool isLive();
 	bool isDead();
 	void DrawPLayer();
 	//void Move(int key)
 	int getLevel();
 	int getScore();
 	void LevelUp();
+
+	void soundCar();
+	void soundTruck();
 };
 
