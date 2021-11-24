@@ -65,3 +65,17 @@ CGAME::~CGAME()
     delete[]akl;
     delete[]ac;
 }
+
+CPEOPLE CGAME::getPeople() {
+    return cn;
+}
+void CGAME::updatePosPeople(char input) {
+    if (input == 'w')
+        cn.Up(4);
+    else if (input == 'a')
+        cn.Left(2);
+    else if (input == 'd')
+        cn.Right(2);
+    else if (input == 's')
+        cn.Down(4);
+}
