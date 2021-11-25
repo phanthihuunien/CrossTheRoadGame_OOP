@@ -6,7 +6,7 @@
 #include"CDINAUSOR.h"
 #include"CBIRD.h"
 #include"CONSOLE.h"
-
+#include"Header.h"
 class CGAME {
 private:
 	CTRUCK* axt;

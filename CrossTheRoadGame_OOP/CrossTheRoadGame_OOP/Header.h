@@ -6,7 +6,7 @@
 
 using namespace std;
 
-const int MAXWIDTH = 120;
+const int MAXWIDTH = 115;
 const int MAXHEIGHT = 25;
 
 const int y_truck = 20;

@@ -6,7 +6,7 @@
 
 CPEOPLE::CPEOPLE() {
     mX = (MAXWIDTH / 2) - 1;
-    mY = 20;
+    mY = 21;
     mState = true;
     level = 1;
     score = 0;
