@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+int CTRUCK::numTruck=5;
+
 void CTRUCK::Draw() {
 	gotoXY(mX, mY);cout<<char(219);
 	gotoXY(mX - 1, mY);cout<<char(219);

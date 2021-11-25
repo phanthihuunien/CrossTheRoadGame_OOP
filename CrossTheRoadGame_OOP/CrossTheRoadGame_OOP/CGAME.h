@@ -24,6 +24,7 @@ public:
 	CCAR* getCar();
 	CBIRD* getBird();
 	CDINAUSOR* getDinausor();
+	void clearGame();
 	void resetGame(); // Thực hiện thiết lập lại toàn bộ dữ liệu như lúc đầu
 	void exitGame(HANDLE); // Thực hiện thoát Thread 
 	void startGame(); // Thực hiện bắt đầu vào trò chơi

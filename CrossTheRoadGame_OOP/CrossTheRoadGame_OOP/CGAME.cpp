@@ -1,4 +1,8 @@
 #include"CGAME.h"
+#include <string>
+#include <iostream>
+
+string stringEnd = "Dead, type y to continue or anykey to exit";
 
 CGAME::CGAME()
 {
@@ -95,3 +99,56 @@ void CGAME::startGame(){
 	this->getPeople().isLive() = true;
 }
 
+void CGAME::resetGame(){
+	SetColor(15);
+	clearGame();
+
+	int sizeStr = stringEnd.length();
+	GotoXY(WIDTH / 5 + 2, HEIGHT + 1);
+	for (int i = 0; i < sizeStr; i++) cout << " ";
+	CGAME* cg = new CGAME(velocity, numOfObj, isSound);
+	*this = *cg;
+
+	this->getPeople().isLive() = false;
+}
+
+void CGAME::clearGame(){
+    system("cls");
+    for (int i = 0; i < xhSize; i++)
+		this->getCar()[i].draw("_");
+	for (int i = 0; i < xtSize; i++)
+		this->getTruck()[i].draw("_");
+
+	for (int i = 0; i < klSize; i++)
+		this->getDinauour()[i].draw("_");
+	for (int i = 0; i < chSize; i++)
+		this->getBird()[i].draw("_");
+
+	int xCNSize = this->getPeople().getX().size();
+	for (int i = 0; i < xCNSize; i++)
+	if (this->getPeople().getY()[i] % 4 == 0 && this->getPeople().getY()[i] != MAXHEIGHT - 1 - i)
+		this->getPeople().draw("_");
+	else
+		this->getPeople().draw(" ");
+
+	for (int i = 0; i < NUM_LANE; i++)
+	{
+		gotoXY(this->getPeople().getX()[0], LANE[i]);
+		cout << "_";
+		gotoXY(this->getPeople().getX()[0], LANE[i] + 1);
+		cout << " ";
+	}
+}
+
+void CGAME::resetGame(){
+	SET_COLOR(15);
+	clearGame();
+
+	int sizeStr = stringEnd.length();
+	gotoXY(MAXWIDTH / 5 + 2, MAXHEIGHT + 1);
+	for (int i = 0; i < sizeStr; i++) cout << " ";
+	CGAME* cg = new CGAME();
+	*this = *cg;
+
+	this->getPeople().isLive() = false;
+}

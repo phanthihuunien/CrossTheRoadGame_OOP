@@ -104,3 +104,10 @@ void CPEOPLE::soundTruck()
 	PlaySound(L"truck.wav", NULL, SND_FILENAME);
 }
 
+int& CPEOPLE::getX(){
+    return mX;
+}
+
+int& CPEOPLE::getY(){
+    return mY;
+}

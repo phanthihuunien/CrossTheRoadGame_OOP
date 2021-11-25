@@ -1,7 +1,7 @@
 #pragma once
 #include"CVEHICLE.h"
 class CTRUCK : public CVEHICLE {
-	 int numTruck =5;
+	static int numTruck;
 public:
 	void Draw();
 	void deleteChar();
