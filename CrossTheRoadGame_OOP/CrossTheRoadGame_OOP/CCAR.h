@@ -6,5 +6,5 @@ public:
 	void Draw();
     void deleteChar();
     void increaseNumCar();
-};
+};  
 
