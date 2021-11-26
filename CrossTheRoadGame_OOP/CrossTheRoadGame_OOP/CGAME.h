@@ -9,6 +9,10 @@
 #include"Header.h"
 class CGAME {
 private:
+    int carSize;
+	int truckSize;
+	int dinausorSize;
+	int birdSize;
 	CTRUCK* axt;
 	CCAR* axh;
 	CDINAUSOR* akl;
