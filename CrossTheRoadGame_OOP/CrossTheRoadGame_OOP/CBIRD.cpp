@@ -1,8 +1,9 @@
 #include"CBIRD.h"
-CBIRD::CBIRD() :CANIMAL() {}
+CBIRD::CBIRD():CANIMAL() {}
 CBIRD::CBIRD(int x, int y):CANIMAL(x,y) {}
 
 void CBIRD::Draw() {
+	SET_COLOR(3);
 	gotoXY(mX, mY); cout << char(219);
 	gotoXY(mX - 1, mY - 1); cout << char(219);
 	gotoXY(mX + 1, mY - 1); cout << char(219);

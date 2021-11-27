@@ -1,21 +1,18 @@
 #include "CTRUCK.h"
-#include "CVEHICLE.h"
-#include "CONSOLE.h"
-#include <iostream>
-using namespace std;
+CTRUCK::CTRUCK():CVEHICLE() {}
+CTRUCK::CTRUCK(int x, int y):CVEHICLE(x,y) {}
 
 void CTRUCK::Draw() {
+	SET_COLOR(6);
+	gotoXY(mX - 2, mY); cout <<char(220);
+	gotoXY(mX - 1, mY); cout << char(219);
 	gotoXY(mX, mY);cout<<char(219);
-	gotoXY(mX - 1, mY);cout<<char(219);
-	gotoXY(mX - 2, mY);cout<<(220);
+	
 }
 void CTRUCK::deleteChar() {
-	gotoXY(mX, mY);
-	cout << ' ';
-	gotoXY(mX - 1, mY);
-	cout << ' ';
-	gotoXY(mX - 2, mY);
-	cout << ' ';
+	gotoXY(mX - 2 , mY);cout << ' ';
+	gotoXY(mX - 1, mY); cout << ' ';
+	gotoXY(mX, mY); cout << ' ';
 }
 
 void CTRUCK::increaseNumTruck() {
