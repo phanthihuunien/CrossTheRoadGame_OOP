@@ -26,6 +26,9 @@ public:
 	int getScore();
 	void LevelUp();
 
+	int& getX();
+	int& getY();
+
 	void soundCar();
 	void soundTruck();
 };

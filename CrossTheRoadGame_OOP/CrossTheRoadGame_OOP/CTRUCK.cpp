@@ -2,6 +2,8 @@
 CTRUCK::CTRUCK():CVEHICLE() {}
 CTRUCK::CTRUCK(int x, int y):CVEHICLE(x,y) {}
 
+int CTRUCK::numTruck=5;
+
 void CTRUCK::Draw() {
 	SET_COLOR(6);
 	gotoXY(mX - 2, mY); cout <<char(220);
