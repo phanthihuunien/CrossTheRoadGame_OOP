@@ -23,6 +23,36 @@ CGAME::CGAME()
 
 void CGAME::drawGame()
 {
+	if (dxt.getLight()) {
+		SET_COLOR(2);
+		gotoXY(MAXWIDTH + 1, 17);
+		cout << char(254);
+		SET_COLOR(8);
+	}
+	else if (!dxt.getLight()) {
+		SET_COLOR(4);
+		gotoXY(MAXWIDTH + 1, 18);
+		cout << char(254);
+		SET_COLOR(8);
+	}
+	if (dxh.getLight()) {
+		SET_COLOR(2);
+		gotoXY(1, 13);
+		cout << char(254);
+		SET_COLOR(8);
+	}
+	else if (!dxh.getLight()) {
+		SET_COLOR(4);
+		gotoXY(1, 14);
+		cout << char(254);
+		SET_COLOR(8);
+	}
+	for (int i = 0; i < cn.getLevel(); i++) {
+		axt[i].Draw();
+		axh[i].Draw();
+		ac[i].Draw();
+		akl[i].Draw();
+	}
 }
 
 void CGAME::drawBackground() {
@@ -111,56 +141,56 @@ void CGAME::startGame() {
 	//this->getPeople().isLive() = true;
 }
 
-void CGAME::resetGame(){
-	SetColor(15);
-	clearGame();
-
-	int sizeStr = stringEnd.length();
-	GotoXY(WIDTH / 5 + 2, HEIGHT + 1);
-	for (int i = 0; i < sizeStr; i++) cout << " ";
-	CGAME* cg = new CGAME(velocity, numOfObj, isSound);
-	*this = *cg;
-
-	this->getPeople().isLive() = false;
-}
-
-void CGAME::clearGame(){
-    system("cls");
-    for (int i = 0; i < carSize; i++)
-		this->getCar()[i].draw("_");
-	for (int i = 0; i < truckSize; i++)
-		this->getTruck()[i].draw("_");
-
-	for (int i = 0; i < dinausorSize; i++)
-		this->getDinauour()[i].draw("_");
-	for (int i = 0; i < birdSize; i++)
-		this->getBird()[i].draw("_");
-
-	int xCNSize = this->getPeople().getX().size();
-	for (int i = 0; i < xCNSize; i++)
-	if (this->getPeople().getY()[i] % 4 == 0 && this->getPeople().getY()[i] != MAXHEIGHT - 1 - i)
-		this->getPeople().draw("_");
-	else
-		this->getPeople().draw(" ");
-
-	for (int i = 0; i < numLane; i++)
-	{
-		gotoXY(this->getPeople().getX()[0], LANE[i]);
-		cout << "_";
-		gotoXY(this->getPeople().getX()[0], LANE[i] + 1);
-		cout << " ";
-	}
-}
-
-void CGAME::resetGame(){
-	SET_COLOR(15);
-	clearGame();
-
-	int sizeStr = stringEnd.length();
-	gotoXY(MAXWIDTH / 5 + 2, MAXHEIGHT + 1);
-	for (int i = 0; i < sizeStr; i++) cout << " ";
-	CGAME* cg = new CGAME();
-	*this = *cg;
-
-	this->getPeople().isLive() = false;
-}
+//void CGAME::resetGame(){
+//	SetColor(15);
+//	clearGame();
+//
+//	int sizeStr = stringEnd.length();
+//	GotoXY(WIDTH / 5 + 2, HEIGHT + 1);
+//	for (int i = 0; i < sizeStr; i++) cout << " ";
+//	CGAME* cg = new CGAME(velocity, numOfObj, isSound);
+//	*this = *cg;
+//
+//	this->getPeople().isLive() = false;
+//}
+//
+//void CGAME::clearGame(){
+//    system("cls");
+//    for (int i = 0; i < carSize; i++)
+//		this->getCar()[i].draw("_");
+//	for (int i = 0; i < truckSize; i++)
+//		this->getTruck()[i].draw("_");
+//
+//	for (int i = 0; i < dinausorSize; i++)
+//		this->getDinauour()[i].draw("_");
+//	for (int i = 0; i < birdSize; i++)
+//		this->getBird()[i].draw("_");
+//
+//	int xCNSize = this->getPeople().getX().size();
+//	for (int i = 0; i < xCNSize; i++)
+//	if (this->getPeople().getY()[i] % 4 == 0 && this->getPeople().getY()[i] != MAXHEIGHT - 1 - i)
+//		this->getPeople().draw("_");
+//	else
+//		this->getPeople().draw(" ");
+//
+//	for (int i = 0; i < numLane; i++)
+//	{
+//		gotoXY(this->getPeople().getX()[0], LANE[i]);
+//		cout << "_";
+//		gotoXY(this->getPeople().getX()[0], LANE[i] + 1);
+//		cout << " ";
+//	}
+//}
+//
+//void CGAME::resetGame(){
+//	SET_COLOR(15);
+//	clearGame();
+//
+//	int sizeStr = stringEnd.length();
+//	gotoXY(MAXWIDTH / 5 + 2, MAXHEIGHT + 1);
+//	for (int i = 0; i < sizeStr; i++) cout << " ";
+//	CGAME* cg = new CGAME();
+//	*this = *cg;
+//
+//	this->getPeople().isLive() = false;
+//}

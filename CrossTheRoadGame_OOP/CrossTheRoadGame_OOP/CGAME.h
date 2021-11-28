@@ -5,6 +5,7 @@
 #include"CCAR.h"
 #include"CDINAUSOR.h"
 #include"CBIRD.h"
+#include"CTRAFFICLIGHT.h"
 #include"CONSOLE.h"
 #include"Header.h"
 class CGAME {
@@ -18,6 +19,8 @@ private:
 	CDINAUSOR* akl;
 	CBIRD* ac;
 	CPEOPLE cn;
+	CTRAFFICLIGHT dxh;
+	CTRAFFICLIGHT dxt;
 public:
 	CGAME(); //Chuẩn bị dữ liệu cho tất cả các đối tượng 
 	void drawGame(); //Thực hiện vẽ trò chơi ra màn hình sau khi có dữ liệu

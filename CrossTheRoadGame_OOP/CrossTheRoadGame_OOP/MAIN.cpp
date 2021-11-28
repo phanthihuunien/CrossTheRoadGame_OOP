@@ -5,4 +5,11 @@ using namespace std;
 #include<vector>
 
 int main() {
+	FixConsoleWindow();
+	ShowConsoleCursor(0);
+	CGAME cg;
+	cg.drawBackground();
+	cg.drawGame();
+	cg.getPeople().DrawPLayer();
+	while (true);
 }
