@@ -6,15 +6,15 @@ protected:
 	int mX, mY;
 public:
 	friend class CPEOPLE;
-<<<<<<< Updated upstream
+
 	 void Move();
 	 virtual void Draw() {}
 	 virtual void deleteChar() {}
-=======
+
 	friend class CGAME;
 	virtual void Move(int x, int y);
 	virtual void Draw();
->>>>>>> Stashed changes
+
 	virtual void Tell() = 0;
 	CANIMAL();
 	CANIMAL(int x, int y);

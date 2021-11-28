@@ -45,13 +45,8 @@ public:
 	void updatePosPeople(char); //Thực hiện điều khiển di chuyển của CPEOPLE
 	void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
 	void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
-<<<<<<< Updated upstream
-
-
-=======
 	void clearMessage(int x, int y, int length);
 	bool checkFileExist(const string& fileName);
 	void writeFile(std::ostream& stream, int x);
->>>>>>> Stashed changes
 };
 

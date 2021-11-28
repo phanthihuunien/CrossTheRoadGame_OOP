@@ -27,13 +27,11 @@ public:
 	int getScore();
 	void LevelUp();
 
-<<<<<<< Updated upstream
 	int& getX();
 	int& getY();
 
 	void soundCar();
 	void soundTruck();
-=======
->>>>>>> Stashed changes
+
 };
 

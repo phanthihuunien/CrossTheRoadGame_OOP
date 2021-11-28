@@ -122,7 +122,7 @@ CPEOPLE CGAME::getPeople()
 {
 	return CPEOPLE();
 }
-<<<<<<< Updated upstream
+
 
 
 void CGAME::startGame() {
@@ -195,7 +195,7 @@ void CGAME::startGame() {
 //
 //	this->getPeople().isLive() = false;
 //}
-=======
+
 void CGAME::updatePosPeople(char input) {
     if (input == 'w')
         cn.Up(4);
@@ -323,4 +323,4 @@ bool CGAME::saveGame(mutex& mx, bool inMenu) {
     if (c == 1) return true;
     return false;
 }
->>>>>>> Stashed changes
+

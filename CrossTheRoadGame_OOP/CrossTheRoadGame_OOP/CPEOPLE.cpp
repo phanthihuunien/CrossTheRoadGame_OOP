@@ -5,6 +5,8 @@
 // / \ / \
 
 CPEOPLE::CPEOPLE() {
+    tmpY = 21;
+    tmpX = (MAXWIDTH / 2) - 1;
     mX = (MAXWIDTH / 2) - 1;
     mY = 21;
     mState = true;
