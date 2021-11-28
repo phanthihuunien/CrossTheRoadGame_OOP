@@ -138,7 +138,22 @@ void CGAME::startGame() {
 	cout << "EXIT (ESC)";
 	gotoXY(MAXWIDTH / 6 * 4 + 2, MAXHEIGHT + 3);
 	cout << "PAUSE (P) ";
-
+	for (int i = 0; i <= MAXWIDTH + 25; i++)
+	{
+		gotoXY(i, 1);
+		cout << " ";
+		gotoXY(i, MAXHEIGHT);
+		cout << " ";
+	}
+	for (int i = 2; i < MAXHEIGHT; i++)
+	{
+		gotoXY(0, i);
+		cout << " ";
+		gotoXY(MAXWIDTH, i);
+		cout << " ";
+		gotoXY(MAXWIDTH + 25, i);
+		cout << " ";
+	}
 	//this->getPeople().isLive() = true;
 }
 

@@ -1,0 +1,27 @@
+﻿  CANIMAL.cpp
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(16,21): error C2535: 'void CANIMAL::Draw(void)': member function already defined or declared
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(11): message : see declaration of 'CANIMAL::Draw'
+  CBIRD.cpp
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(16,21): error C2535: 'void CANIMAL::Draw(void)': member function already defined or declared
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(11): message : see declaration of 'CANIMAL::Draw'
+  CCAR.cpp
+  CDINAUSOR.cpp
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(16,21): error C2535: 'void CANIMAL::Draw(void)': member function already defined or declared
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(11): message : see declaration of 'CANIMAL::Draw'
+  CGAME.cpp
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(16,21): error C2535: 'void CANIMAL::Draw(void)': member function already defined or declared
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(11): message : see declaration of 'CANIMAL::Draw'
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CGAME.cpp(246,70): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CGAME.cpp(256,96): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CGAME.cpp(273,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CGAME.cpp(275,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  CONSOLE.cpp
+  CPEOPLE.cpp
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(16,21): error C2535: 'void CANIMAL::Draw(void)': member function already defined or declared
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(11): message : see declaration of 'CANIMAL::Draw'
+  CTRUCK.cpp
+  CVEHICLE.cpp
+  MAIN.cpp
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(16,21): error C2535: 'void CANIMAL::Draw(void)': member function already defined or declared
+C:\Users\FShop\OneDrive\Documents\GitHub\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CrossTheRoadGame_OOP\CANIMAL.h(11): message : see declaration of 'CANIMAL::Draw'
+  Generating Code...
