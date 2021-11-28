@@ -13,23 +13,31 @@ CPEOPLE::CPEOPLE() {
     
 }
 void CPEOPLE::Up(int y) {
+    tmpY = mY;
+    tmpX = mX;
     if (mY - y >= 0) { //neu mY < y thi se thanh down 
         mY -= y;
     }
 }
 void CPEOPLE::Down(int y) {
+    tmpY = mY;
+    tmpX = mX;
     if (mY + y <= MAXHEIGHT) {
         mY += y;
     }
    
 }
 void CPEOPLE::Left(int x) {
+    tmpY = mY;
+    tmpX = mX;
     if (mX - x >= 3) { 
         mX -= x;
     }
     
 }
 void CPEOPLE::Right(int x) {
+    tmpY = mY;
+    tmpX = mX;
     if (mX + x <= MAXWIDTH) {
         mX += x;
     }
@@ -72,6 +80,12 @@ bool CPEOPLE::isDead() {
     return !mState;
 }
 void CPEOPLE::DrawPLayer() { // 3x3
+    gotoXY(tmpX, tmpY);
+    cout << "   ";
+    gotoXY(tmpX, tmpY + 1);
+    cout << "   ";
+    gotoXY(tmpX, tmpY + 2);
+    cout << "   ";
     gotoXY(mX, mY);
     cout << " O ";
     gotoXY(mX, mY + 1);

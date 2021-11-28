@@ -5,11 +5,12 @@
 #include"CONSOLE.h"
 class CPEOPLE {
 private:
-	int mX, mY;
+	int mX, mY, tmpX, tmpY;
 	bool mState; //Trạng thái sống chết
 	int score;
 	int level;
 public:
+	friend class CGAME;
 	CPEOPLE();
 	void Up(int);
 	void Left(int);
@@ -26,10 +27,13 @@ public:
 	int getScore();
 	void LevelUp();
 
+<<<<<<< Updated upstream
 	int& getX();
 	int& getY();
 
 	void soundCar();
 	void soundTruck();
+=======
+>>>>>>> Stashed changes
 };
 

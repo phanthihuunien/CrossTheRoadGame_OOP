@@ -122,6 +122,7 @@ CPEOPLE CGAME::getPeople()
 {
 	return CPEOPLE();
 }
+<<<<<<< Updated upstream
 
 
 void CGAME::startGame() {
@@ -194,3 +195,132 @@ void CGAME::startGame() {
 //
 //	this->getPeople().isLive() = false;
 //}
+=======
+void CGAME::updatePosPeople(char input) {
+    if (input == 'w')
+        cn.Up(4);
+    else if (input == 'a')
+        cn.Left(2);
+    else if (input == 'd')
+        cn.Right(2);
+    else if (input == 's')
+        cn.Down(4);
+}
+void CGAME::clearMessage(int x, int y, int length) {
+    gotoXY(x, y);
+    for (int i = 0; i < length; ++i) {
+        cout << ' ';
+    }
+}
+bool CGAME::checkFileExist(const string& fileName) {
+    struct stat buffer;
+    return stat(fileName.c_str(), &buffer) == 0;
+}
+void CGAME::writeFile(std::ostream& stream, int x) {
+    stream.write((char*)&x, sizeof(int));
+}
+bool CGAME::saveGame(mutex& mx, bool inMenu) {
+
+    lock_guard<mutex> lock(mx);
+    int boxWidth = 62, boxHeight = 4, startBoxX = 0, startBoxY = 32;
+    gotoXY(startBoxX, startBoxY);
+    SET_COLOR(12);
+    for (int j = 0; j < boxWidth; ++j) {
+        cout << '=';
+    }
+    gotoXY(startBoxX, startBoxY + 1);
+    cout << '#';
+    gotoXY(startBoxX, startBoxY + 2);
+    cout << '#';
+    gotoXY(boxWidth - 1, startBoxY + 1);
+    cout << '#';
+    gotoXY(boxWidth - 1, startBoxY + 2);
+    cout << '#';
+
+    gotoXY(startBoxX, startBoxY + 3);
+    for (int j = 0; j < boxWidth; ++j) {
+        cout << '=';
+    }
+    SET_COLOR(10);
+    string message = "Enter the name to save the game: ", fileName;
+    gotoXY(startBoxX + (boxWidth - message.size()) / 2, startBoxY + 1);
+    cout << message;
+
+    if (!inMenu)
+        gotoXY(1, startBoxY + 2);
+    SET_COLOR(7);
+    while (true) {
+
+        cin >> fileName;
+        GetAsyncKeyState(VK_RETURN); //Enter
+        clearMessage(startBoxX + (boxWidth - message.size()) / 2, startBoxY + 2, message.size());
+        
+        if (checkFileExist(fileName)) {
+           
+            SET_COLOR(11);
+            string message2 = "The filename already exists!!. Do you want to overwrite it?\n (1. Yes, 0. No): ";
+            gotoXY(startBoxX , startBoxY + 1);
+            
+            cout << message2;
+            int ans;
+            gotoXY(startBoxX + boxWidth / 3, startBoxY + 2);
+            ans = _getch();
+            if (ans == 0) {
+                clearMessage(startBoxX, startBoxY + 1, boxWidth - 2);
+                clearMessage(startBoxX, startBoxY + 2, boxWidth - 2);
+                SET_COLOR(14);
+                string message3 = "Enter another file name: ";
+                gotoXY(startBoxX + (boxWidth - message3.size()) / 2, startBoxY + 1);
+                cout << message3;
+                gotoXY(startBoxX + (boxWidth - message3.size()) + 6, startBoxY + 1);
+                SET_COLOR(7);
+               
+                continue;
+            }
+        }
+        ofstream fileOut(fileName, ios::out | ios::binary);
+        // save mX and mY of people
+        writeFile(fileOut, getPeople().mX);
+        writeFile(fileOut, getPeople().mY);
+
+        writeFile(fileOut, getPeople().getLevel());
+        for (int i = 0; i < getPeople().getLevel(); ++i) {
+            writeFile(fileOut, axt[i].mX);
+            writeFile(fileOut, axt[i].mY);
+        }
+
+        for (int i = 0; i < getPeople().getLevel(); ++i) {
+            writeFile(fileOut, axh[i].mX);
+            writeFile(fileOut, axh[i].mY);
+        }
+
+        for (int i = 0; i < getPeople().getLevel(); ++i) {
+            writeFile(fileOut, akl[i].mX);
+            writeFile(fileOut, akl[i].mY);
+        }
+
+        for (int i = 0; i < getPeople().getLevel(); ++i) {
+            writeFile(fileOut, ac[i].mX);
+            writeFile(fileOut, ac[i].mY);
+        }
+        fileOut.close();
+        break;
+    }
+
+    for (int i = 1; i < 3; ++i) {
+        clearMessage(startBoxX, startBoxY + i, boxWidth - 1);
+    }
+
+    string message4 = "Do you want to exit the game? (1. Yes, 0. No) ";
+    gotoXY(startBoxX + 4 , startBoxY + 1);
+    cout << message4;
+
+    gotoXY(startBoxX + 6 , startBoxY + 1);
+    int c = _getch();
+    for (int i = 0; i < 4; ++i) {
+        clearMessage(startBoxX, startBoxY + i, boxWidth);
+    }
+    if (c == 1) return true;
+    return false;
+}
+>>>>>>> Stashed changes

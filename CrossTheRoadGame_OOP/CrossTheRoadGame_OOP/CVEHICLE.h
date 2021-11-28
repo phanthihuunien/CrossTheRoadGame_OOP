@@ -5,7 +5,7 @@ class CVEHICLE {
 protected:
 	int mX, mY;
 public:
-
+	friend class CGAME;
 	friend class CPEOPLE;
 	 void Move();
 	 virtual void Draw() {}

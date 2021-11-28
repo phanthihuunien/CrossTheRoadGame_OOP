@@ -1,5 +1,7 @@
 ﻿#pragma once
-
+#include<mutex>
+#include <conio.h>
+#include<fstream>
 #include"CPEOPLE.h"
 #include"CTRUCK.h"
 #include"CCAR.h"
@@ -36,13 +38,20 @@ public:
 	void exitGame(HANDLE); // Thực hiện thoát Thread 
 	void startGame(); // Thực hiện bắt đầu vào trò chơi
 	void loadGame(istream); // Thực hiện tải lại trò chơi đã lưu
-	void saveGame(istream); // Thực hiện lưu lại dữ liệu trò chơi
+	//void saveGame(istream); // Thực hiện lưu lại dữ liệu trò chơi
+	bool saveGame(mutex&, bool = false);
 	void pauseGame(HANDLE); // Tạm dừng Thread
 	void resumeGame(HANDLE); //Quay lai Thread
 	void updatePosPeople(char); //Thực hiện điều khiển di chuyển của CPEOPLE
 	void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
 	void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
+<<<<<<< Updated upstream
 
 
+=======
+	void clearMessage(int x, int y, int length);
+	bool checkFileExist(const string& fileName);
+	void writeFile(std::ostream& stream, int x);
+>>>>>>> Stashed changes
 };
 
