@@ -99,7 +99,7 @@ void CPEOPLE::DrawPLayer() { // 3x3
 // <U> /U\      
 // / \ / \
 
-int CPEOPLE::getLevel() {
+int &CPEOPLE::getLevel() {
     return level;
 }
 

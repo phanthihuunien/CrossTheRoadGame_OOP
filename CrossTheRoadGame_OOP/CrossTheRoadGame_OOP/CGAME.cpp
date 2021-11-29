@@ -157,6 +157,7 @@ void CGAME::startGame() {
 	//this->getPeople().isLive() = true;
 }
 
+
 //void CGAME::resetGame(){
 //	SetColor(15);
 //	clearGame();
@@ -233,6 +234,12 @@ bool CGAME::checkFileExist(const string& fileName) {
 }
 void CGAME::writeFile(std::ostream& stream, int x) {
     stream.write((char*)&x, sizeof(int));
+}
+int CGAME::readFile(ifstream& stream)
+{
+    int x;
+    stream.read((char*)&x, sizeof(int));
+    return x;
 }
 bool CGAME::saveGame(mutex& mx, bool inMenu) {
 
@@ -339,3 +346,95 @@ bool CGAME::saveGame(mutex& mx, bool inMenu) {
     return false;
 }
 
+void CGAME::loadGame(mutex& mx, bool inMenu)
+{
+    lock_guard<mutex> lock(mx);
+    int boxWidth = 62, boxHeight = 4, startBoxX = 0, startBoxY = 32;
+    gotoXY(startBoxX, startBoxY);
+    SET_COLOR(12);
+    for (int j = 0; j < boxWidth; ++j) {
+        cout << '=';
+    }
+    gotoXY(startBoxX, startBoxY + 1);
+    cout << '#';
+    gotoXY(startBoxX, startBoxY + 2);
+    cout << '#';
+    gotoXY(boxWidth - 1, startBoxY + 1);
+    cout << '#';
+    gotoXY(boxWidth - 1, startBoxY + 2);
+    cout << '#';
+
+    gotoXY(startBoxX, startBoxY + 3);
+    for (int j = 0; j < boxWidth; ++j) {
+        cout << '=';
+    }
+    SET_COLOR(10);
+    string message = "Enter the name to save the game: ", fileName;
+    gotoXY(startBoxX + (boxWidth - message.size()) / 2, startBoxY + 1);
+    cout << message;
+
+    if (!inMenu)
+        gotoXY(1, startBoxY + 2);
+    SET_COLOR(7);
+    while (true) {
+
+        cin >> fileName;
+        GetAsyncKeyState(VK_RETURN); //Enter
+        clearMessage(startBoxX + (boxWidth - message.size()) / 2, startBoxY + 2, message.size());
+
+        if (checkFileExist(fileName)) {
+
+            SET_COLOR(11);
+            string message2 = "File do not exists. Do you want to abort?\n (1. Yes, 0. No): ";
+            gotoXY(startBoxX, startBoxY + 1);
+
+            cout << message2;
+            int ans;
+            gotoXY(startBoxX + boxWidth / 3, startBoxY + 2);
+            ans = _getch();
+            if (ans == 0) {
+                clearMessage(startBoxX, startBoxY + 1, boxWidth - 2);
+                clearMessage(startBoxX, startBoxY + 2, boxWidth - 2);
+                SET_COLOR(14);
+                string message3 = "Enter another file name: ";
+                gotoXY(startBoxX + (boxWidth - message3.size()) / 2, startBoxY + 1);
+                cout << message3;
+                gotoXY(startBoxX + (boxWidth - message3.size()) + 6, startBoxY + 1);
+                SET_COLOR(7);
+                continue;
+            }
+        }
+        ifstream fin(fileName, ios::out | ios::binary);
+		// player
+        getPeople().getX() = readFile(fin);
+        getPeople().getY() = readFile(fin);
+		// level
+        getPeople().getLevel() = readFile(fin);
+		// trucks
+		for (int i = 0; i < getPeople().getLevel(); ++i) {
+			axt[i].mX = readFile(fin);
+			axt[i].mY = readFile(fin);
+		}
+
+		// cars
+		for (int i = 0; i < getPeople().getLevel(); ++i) {
+			axh[i].mX = readFile(fin);
+			axh[i].mY = readFile(fin);
+		}
+
+		// dinos
+		for (int i = 0; i < getPeople().getLevel(); ++i) {
+			akl[i].mX = readFile(fin);
+			akl[i].mY = readFile(fin);
+		}
+
+		// birds
+		for (int i = 0; i < getPeople().getLevel(); ++i) {
+			ac[i].mX = readFile(fin);
+			ac[i].mY = readFile(fin);
+		}
+		system("cls");
+		drawBackground();
+		break;
+	}
+}
