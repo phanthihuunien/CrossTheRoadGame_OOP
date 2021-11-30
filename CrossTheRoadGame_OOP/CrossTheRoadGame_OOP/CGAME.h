@@ -12,6 +12,7 @@
 #include"CDINAUSOR.h"
 #include"CBIRD.h"
 #include"CTRAFFICLIGHT.h"
+#include"CAMBULANCE.h"
 #include"CONSOLE.h"
 #include"Header.h"
 
@@ -68,5 +69,7 @@ public:
 	bool checkFileExist(const string& fileName);
 	void writeFile(std::ostream& stream, int x);
 	int readFile(ifstream& stream);
+	void ambulanceEffect(mutex&);
+	void ambulanceSound(mutex&);
 };
 

@@ -514,3 +514,80 @@ void CGAME::loadGame(mutex& mx, bool inMenu)
 		break;
 	}
 }
+void CGAME::ambulanceEffect(mutex& mx) {
+    lock_guard<mutex> lock(mx);
+    if (cn.getY() == 18) {
+        for (int i = 0; i < getPeople().getLevel(); ++i)
+            axt[i].CVEHICLE::deleteChar();
+    }else if (cn.getY() == 14) {
+        for (int i = 0; i < getPeople().getLevel(); ++i)
+            axh[i].CVEHICLE::deleteChar();
+    }
+    else if (cn.getY() == 10) {
+        for (int i = 0; i < getPeople().getLevel(); ++i)
+            akl[i].CANIMAL::deleteChar();
+    }
+    else if (cn.getY() == 6) {
+        for (int i = 0; i < getPeople().getLevel(); ++i)
+            ac[i].CANIMAL::deleteChar();
+    }
+    gotoXY(getPeople().getX(), getPeople().getY()); cout << "\\ /";
+    gotoXY(getPeople().getX(), getPeople().getY() + 1);cout << " X ";
+    gotoXY(getPeople().getX(), getPeople().getY() + 2);cout << "/"<< " " << "\\";
+
+    if (cn.getX() > MAXWIDTH / 2) {
+        CAMBULANCE ambulance(3, cn.getY());
+        for (int i = 1; i < 50; i++) {
+            if (ambulance.mX + 5 >= cn.getX()) {
+                ambulance.ambulanceMove(ambulance.mX, ambulance.mY);
+            }
+            else {
+                ambulance.ambulanceMove(ambulance.mX + 2, ambulance.mY);
+            }
+            ambulance.DrawRight();
+            Sleep(50);
+        }
+        cn.eraseOldPeople();
+        for (int i = 1; i < 50; i++) {
+            if (ambulance.mX <= 5) {
+                gotoXY(ambulance.mX, cn.getY());cout << "    ";
+                gotoXY(ambulance.mX, cn.getY() + 1);cout << "    ";
+                gotoXY(ambulance.mX, cn.getY() + 2); cout << "    ";
+            }
+            else {
+                ambulance.ambulanceMove(ambulance.mX - 2, ambulance.mY);
+                ambulance.DrawLeft();
+            }
+            Sleep(50);
+        }
+    }
+    else if (cn.getX() < MAXWIDTH / 2) {
+        CAMBULANCE ambulance(MAXWIDTH - 4, cn.getY());
+        for (int i = 1; i < 50; i++) {
+            if (ambulance.mX <= cn.getX() + 5) {
+                ambulance.ambulanceMove(ambulance.mX, ambulance.mY);
+            }
+            else {
+                ambulance.ambulanceMove(ambulance.mX - 2, ambulance.mY);
+            }
+            ambulance.DrawLeft();
+            Sleep(50);
+        }
+        cn.eraseOldPeople();
+        for (int i = 0; i < 50; i++) {
+            if (ambulance.mX + 5 >= MAXWIDTH) {
+                gotoXY(ambulance.mX, cn.getY());cout << "    ";
+                gotoXY(ambulance.mX, cn.getY() + 1);cout << "    ";
+                gotoXY(ambulance.mX, cn.getY() + 2);cout << "    ";
+            }
+            else {
+                ambulance.ambulanceMove(ambulance.mX + 2, ambulance.mY);
+                ambulance.DrawRight();
+            }
+            Sleep(50);
+        }
+    }
+}
+void CGAME::ambulanceSound(mutex& mx) {
+    PlaySound(L"ambulance.wav", NULL, SND_FILENAME);
+}

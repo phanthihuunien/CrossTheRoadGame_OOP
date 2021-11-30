@@ -34,5 +34,6 @@ public:
 	void soundTruck();
 
 	void setAlive();
+	void eraseOldPeople();
 };
 

@@ -130,3 +130,8 @@ int& CPEOPLE::getY(){
 void CPEOPLE:: setAlive() {
     mState = 1;
 }
+void CPEOPLE::eraseOldPeople() {
+    gotoXY(mX, mY);cout << "   ";
+    gotoXY(mX, mY + 1); cout << "   ";
+    gotoXY(mX, mY + 2); cout << "   ";
+}
