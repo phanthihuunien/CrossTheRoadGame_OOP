@@ -8,6 +8,7 @@ void CCAR::Draw() {
 	gotoXY(mX, mY - 1); cout << char(254);
 	gotoXY(mX, mY); cout << char(219);
 	gotoXY(mX + 1, mY);cout<<char(219);
+	SET_COLOR(0);
 }
 void CCAR::deleteChar() {
 	gotoXY(mX - 1, mY);

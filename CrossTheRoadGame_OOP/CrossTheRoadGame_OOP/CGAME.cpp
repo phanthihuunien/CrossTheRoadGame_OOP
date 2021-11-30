@@ -1,6 +1,4 @@
 #include"CGAME.h"
-#include <string>
-#include <iostream>
 
 string stringEnd = "Dead, type y to continue or anykey to exit";
 
@@ -11,6 +9,12 @@ CGAME::CGAME()
 	axh = new CCAR[level];
 	akl = new CDINAUSOR[level];
 	ac = new CBIRD[level];
+    ani = new CANIMAL*[2];
+    veh = new CVEHICLE*[2];
+    ani[0] = akl;
+    ani[1] = ac;
+    veh[0] = axt;
+    veh[1] = axh;
 	for (int i = 0; i < level; i++) {
 		int x_animal = MAXWIDTH - 11 * i - 5;
 		int x_vehical = 11 * i + 5;
@@ -21,6 +25,17 @@ CGAME::CGAME()
 	}
 }
 
+void CGAME::updateObstacle()
+{
+    for (int i = 0; i < getPeople().getLevel(); ++i) {
+        int x_animal = MAXWIDTH - 11 * i - 5;
+        int x_vehical = 11 * i + 5;
+        ac[i].set(x_animal, y_bird);
+        akl[i].set(x_animal, y_dinausor);
+        axt[i].set(x_vehical, y_truck);
+        axh[i].set(x_vehical, y_car);
+    }
+}
 void CGAME::drawGame()
 {
 	if (dxt.getLight()) {
@@ -59,7 +74,9 @@ void CGAME::drawBackground() {
 	system("color 80");
 	for (int i = 0; i < MAXHEIGHT; i++) {
 		for (int j = 2; j < MAXWIDTH + 1; j++) {
-			if (j == MAXWIDTH || j == 2) {
+            SET_COLOR(8);
+            cout << (char)219;
+            if (j == MAXWIDTH || j == 2) {
 				gotoXY(j, i);
 				cout << "|";
 			}
@@ -87,6 +104,67 @@ CBIRD* CGAME::getBird() {
 }
 CDINAUSOR* CGAME::getDinausor() {
 	return akl;
+}
+CANIMAL** CGAME::getAnimal()
+{
+    return ani;
+}
+CVEHICLE** CGAME::getVehicle()
+{
+    return veh;
+}
+CTRAFFICLIGHT& CGAME::getCarLight()
+{
+    return dxh;
+}
+CTRAFFICLIGHT& CGAME::getTruckLight()
+{
+    return dxt;
+}
+void CGAME::updateLevel()
+{
+    gotoXY(28, 30);
+    cout << "        ";
+    gotoXY(28, 30);
+    cout << "LEVEL " << getPeople().getLevel();
+}
+bool CGAME::askRestart(mutex& mx)
+{
+    int boxWidth = 42, boxHeight = 4, startBoxX = 44, startBoxY = 32;
+    lock_guard<mutex> lock(mx);
+
+    gotoXY(startBoxX, startBoxY);
+    for (int j = 0; j < boxWidth; ++j) {
+        cout << '=';
+    }
+    gotoXY(startBoxX, startBoxY + 1);
+    for (int j = 0; j < boxWidth; ++j) {
+        if (j == 0 || j == boxWidth - 1)
+            cout << '|';
+        else
+            cout << ' ';
+    }
+
+    gotoXY(startBoxX, startBoxY + 2);
+    for (int j = 0; j < boxWidth; ++j) {
+        cout << '=';
+    }
+
+    string line2 = "Do you want to restart the game? (y/n)";
+    gotoXY(startBoxX + (boxWidth - line2.size()) / 2, startBoxY + 1);
+    cout << line2;
+
+    char answer;
+    while (true) {
+        answer = _getch();
+        if (answer == 'y' || answer == 'n')
+            break;
+    }
+    if (answer == 'y')
+        return true;
+    else
+        return false;
+
 }
 void CGAME::updatePosAnimal() {
 	int level = getPeople().getLevel();
@@ -120,56 +198,53 @@ CGAME::~CGAME()
 
 CPEOPLE CGAME::getPeople()
 {
-	return CPEOPLE();
+	return cn;
 }
 
 
 
-void CGAME::startGame() {
+void CGAME::startGame(thread& t1) {
 	system("cls");
-	DrawBoard(0, 0, MAXWIDTH, MAXHEIGHT);
-	this->drawBackground();
+	drawBackground();
 
-	gotoXY(MAXWIDTH / 6 + 2, MAXHEIGHT + 3);
+	gotoXY(MAXWIDTH / 6 + 2, MAXHEIGHT + 2);
 	cout << "SAVE (L)";
-	gotoXY(MAXWIDTH / 6 * 2 + 2, MAXHEIGHT + 3);
+	gotoXY(MAXWIDTH / 6 * 2 + 2, MAXHEIGHT + 2);
 	cout << "LOAD (T)";
-	gotoXY(MAXWIDTH / 6 * 3 + 2, MAXHEIGHT + 3);
+	gotoXY(MAXWIDTH / 6 * 3 + 2, MAXHEIGHT + 2);
 	cout << "EXIT (ESC)";
-	gotoXY(MAXWIDTH / 6 * 4 + 2, MAXHEIGHT + 3);
+	gotoXY(MAXWIDTH / 6 * 4 + 2, MAXHEIGHT + 2);
 	cout << "PAUSE (P) ";
-	for (int i = 0; i <= MAXWIDTH + 25; i++)
-	{
-		gotoXY(i, 1);
-		cout << " ";
-		gotoXY(i, MAXHEIGHT);
-		cout << " ";
-	}
-	for (int i = 2; i < MAXHEIGHT; i++)
-	{
-		gotoXY(0, i);
-		cout << " ";
-		gotoXY(MAXWIDTH, i);
-		cout << " ";
-		gotoXY(MAXWIDTH + 25, i);
-		cout << " ";
-	}
-	//this->getPeople().isLive() = true;
+	
+    if (t1.joinable())
+        t1.join();
+    t1 = thread(SubThread);
 }
 
+void CGAME::resetGame() {
+    system("cls");
+    drawBackground();
+    updateObstacle();
+    cn.getY() = 21;
+}
+void CGAME::resetData(){
+	SET_COLOR(15);
+	//clearGame();
 
-//void CGAME::resetGame(){
-//	SetColor(15);
-//	clearGame();
-//
-//	int sizeStr = stringEnd.length();
-//	GotoXY(WIDTH / 5 + 2, HEIGHT + 1);
-//	for (int i = 0; i < sizeStr; i++) cout << " ";
-//	CGAME* cg = new CGAME(velocity, numOfObj, isSound);
-//	*this = *cg;
-//
-//	this->getPeople().isLive() = false;
-//}
+	int sizeStr = stringEnd.length();
+	gotoXY(MAXWIDTH / 5 + 2, MAXHEIGHT + 1);
+	for (int i = 0; i < sizeStr; i++) cout << " ";
+	CGAME* cg = new CGAME;
+	*this = *cg;
+}
+void CGAME::exitGame(thread*t1, bool&IS_RUNNING)
+{
+    IS_RUNNING = false;
+    Sleep(500);
+    if (t1->joinable())
+        t1->join();
+    system("cls");
+}
 //
 //void CGAME::clearGame(){
 //    system("cls");
@@ -199,18 +274,7 @@ void CGAME::startGame() {
 //	}
 //}
 //
-//void CGAME::resetGame(){
-//	SET_COLOR(15);
-//	clearGame();
-//
-//	int sizeStr = stringEnd.length();
-//	gotoXY(MAXWIDTH / 5 + 2, MAXHEIGHT + 1);
-//	for (int i = 0; i < sizeStr; i++) cout << " ";
-//	CGAME* cg = new CGAME();
-//	*this = *cg;
-//
-//	this->getPeople().isLive() = false;
-//}
+
 
 void CGAME::updatePosPeople(char input) {
     if (input == 'w')
@@ -346,10 +410,21 @@ bool CGAME::saveGame(mutex& mx, bool inMenu) {
     return false;
 }
 
+void CGAME::pauseGame(thread&t1)
+{
+    SuspendThread(t1.native_handle());
+}
+
+void CGAME::resumeGame(thread&t1)
+{
+    ResumeThread(t1.native_handle());
+}
+
 void CGAME::loadGame(mutex& mx, bool inMenu)
 {
     lock_guard<mutex> lock(mx);
     int boxWidth = 62, boxHeight = 4, startBoxX = 0, startBoxY = 32;
+
     gotoXY(startBoxX, startBoxY);
     SET_COLOR(12);
     for (int j = 0; j < boxWidth; ++j) {
@@ -385,7 +460,7 @@ void CGAME::loadGame(mutex& mx, bool inMenu)
         if (checkFileExist(fileName)) {
 
             SET_COLOR(11);
-            string message2 = "File do not exists. Do you want to abort?\n (1. Yes, 0. No): ";
+            string message2 = "File do not exists. Do you want to cancel?\n (1. Yes, 0. No): ";
             gotoXY(startBoxX, startBoxY + 1);
 
             cout << message2;
@@ -433,6 +508,7 @@ void CGAME::loadGame(mutex& mx, bool inMenu)
 			ac[i].mX = readFile(fin);
 			ac[i].mY = readFile(fin);
 		}
+        fin.close();
 		system("cls");
 		drawBackground();
 		break;

@@ -1,8 +1,6 @@
 #include "CVEHICLE.h"
 #include "CONSOLE.h"
 #include "Header.h"
-#include <iostream>
-using namespace std;
 
 void CVEHICLE::Move(){
 	mX--;

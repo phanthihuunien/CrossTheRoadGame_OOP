@@ -1,4 +1,8 @@
 ﻿#pragma once
+
+
+#include <string>
+#include <iostream>
 #include<mutex>
 #include <conio.h>
 #include<fstream>
@@ -10,6 +14,8 @@
 #include"CTRAFFICLIGHT.h"
 #include"CONSOLE.h"
 #include"Header.h"
+
+using namespace std;
 class CGAME {
 private:
     int carSize;
@@ -18,13 +24,17 @@ private:
 	int birdSize;
 	CTRUCK* axt;
 	CCAR* axh;
+	CVEHICLE** veh;
 	CDINAUSOR* akl;
 	CBIRD* ac;
+	CANIMAL **ani;
 	CPEOPLE cn;
 	CTRAFFICLIGHT dxh;
 	CTRAFFICLIGHT dxt;
 public:
-	CGAME(); //Chuẩn bị dữ liệu cho tất cả các đối tượng 
+	CGAME();
+	void updateObstacle();
+	//Chuẩn bị dữ liệu cho tất cả các đối tượng 
 	void drawGame(); //Thực hiện vẽ trò chơi ra màn hình sau khi có dữ liệu
 	void drawBackground();//Vẽ background
 	~CGAME(); // Hủy tài nguyên đã cấp phát
@@ -33,15 +43,24 @@ public:
 	CCAR* getCar();
 	CBIRD* getBird();
 	CDINAUSOR* getDinausor();
-	void clearGame();
-	void resetGame(); // Thực hiện thiết lập lại toàn bộ dữ liệu như lúc đầu
-	void exitGame(HANDLE); // Thực hiện thoát Thread 
-	void startGame(); // Thực hiện bắt đầu vào trò chơi
+	CANIMAL** getAnimal();
+	CVEHICLE** getVehicle();
+	CTRAFFICLIGHT& getCarLight();
+	CTRAFFICLIGHT& getTruckLight();
+	
+	void updateLevel();
+	//void clearGame();
+	bool askRestart(mutex& mx);
+	void resetGame();
+	void resetData();
+	// Thực hiện thiết lập lại toàn bộ dữ liệu như lúc đầu
+	void exitGame(thread*,bool&); // Thực hiện thoát Thread 
+	void startGame(thread&); // Thực hiện bắt đầu vào trò chơi
 	void loadGame(mutex&,bool); // Thực hiện tải lại trò chơi đã lưu
 	//void saveGame(istream); // Thực hiện lưu lại dữ liệu trò chơi
 	bool saveGame(mutex&, bool = false);
-	void pauseGame(HANDLE); // Tạm dừng Thread
-	void resumeGame(HANDLE); //Quay lai Thread
+	void pauseGame(thread&); // Tạm dừng Thread
+	void resumeGame(thread&); //Quay lai Thread
 	void updatePosPeople(char); //Thực hiện điều khiển di chuyển của CPEOPLE
 	void updatePosVehicle(); //Thực hiện cho CTRUCK & CCAR di chuyển
 	void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển

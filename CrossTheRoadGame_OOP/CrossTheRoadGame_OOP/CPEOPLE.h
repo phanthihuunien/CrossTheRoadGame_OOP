@@ -16,8 +16,8 @@ public:
 	void Left(int);
 	void Right(int);
 	void Down(int);
-	bool isImpactV(const CVEHICLE*&);
-	bool isImpactA(const CANIMAL*&);
+	bool isImpactV( CVEHICLE* const&);
+	bool isImpactA( CANIMAL* const&);
 	bool isFinish();
 	bool isLive();
 	bool isDead();
@@ -33,5 +33,6 @@ public:
 	void soundCar();
 	void soundTruck();
 
+	void setAlive();
 };
 

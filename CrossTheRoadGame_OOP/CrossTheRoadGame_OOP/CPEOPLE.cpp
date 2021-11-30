@@ -46,7 +46,7 @@ void CPEOPLE::Right(int x) {
 
 }
 
-bool CPEOPLE::isImpactV(const CVEHICLE*& vehicle) {
+bool CPEOPLE::isImpactV( CVEHICLE* const& vehicle) {
     if (mY != vehicle[0].mY)
         return false;
     for (int i = 0; i < level; i++) {
@@ -57,7 +57,7 @@ bool CPEOPLE::isImpactV(const CVEHICLE*& vehicle) {
     }
     return false;
 }
-bool CPEOPLE::isImpactA(const CANIMAL*& animal) {
+bool CPEOPLE::isImpactA( CANIMAL*const& animal) {
 
     if (mY != animal[0].mY)
         return false;
@@ -126,4 +126,7 @@ int& CPEOPLE::getX(){
 
 int& CPEOPLE::getY(){
     return mY;
+}
+void CPEOPLE:: setAlive() {
+    mState = 1;
 }

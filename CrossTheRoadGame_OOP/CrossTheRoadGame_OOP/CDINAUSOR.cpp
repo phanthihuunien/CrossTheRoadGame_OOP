@@ -8,6 +8,7 @@ void CDINAUSOR::Draw() {
 	gotoXY(mX, mY);cout<<char(219);
 	gotoXY(mX + 1, mY - 1); cout << char(220);
 	gotoXY(mX + 1, mY); cout << char(223);
+	SET_COLOR(0);
 }
 void CDINAUSOR::deleteChar() {
 	gotoXY(mX - 1, mY); cout << ' ';
