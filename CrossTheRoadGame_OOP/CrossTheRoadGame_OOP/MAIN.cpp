@@ -124,9 +124,13 @@ void SubThread()
 }
 
 
-int main()
-{
-	int temp;
+int main() {
+	//choiceInMenu = 0;
+	FixConsoleWindow();
+	ShowConsoleCursor(0);
+	//StartMenu();
+	IngameMenu();
+	/*int temp;
 	FixConsoleWindow();
 	ShowConsoleCursor(0);
 	thread t1;
@@ -155,6 +159,6 @@ int main()
 				cg.resumeGame(t1);
 			}
 		}
-	}
+	}*/
 return 0;
 }

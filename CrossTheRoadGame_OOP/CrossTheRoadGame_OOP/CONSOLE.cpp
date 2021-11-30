@@ -34,7 +34,7 @@ void SET_COLOR(int color)
 }
 
 void printTitle() {
-	int startX = 20, startY = 0;
+	int startX = 25, startY = 0;
 	string buffer;
 	ifstream fin("title.txt");
 	SET_COLOR(4);
