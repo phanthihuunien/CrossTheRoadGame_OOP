@@ -1,7 +1,8 @@
 #include "CAMBULANCE.h"
-CAMBULANCE::CAMBULANCE():CVEHICLE() {}
-CAMBULANCE::CAMBULANCE(int x, int y):CVEHICLE(x,y) {}
-CAMBULANCE::CAMBULANCE(int prevX, int prevY):prevX(0),prevY(0) {}
+CAMBULANCE::CAMBULANCE():CVEHICLE(), prevX(0), prevY(0) {}
+CAMBULANCE::CAMBULANCE(int x, int y):CVEHICLE(x,y),prevX(0),prevY(0) {}
+
+
 void CAMBULANCE::DrawLeft() {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 	gotoXY(mX + 2, mY);cout << char(254);

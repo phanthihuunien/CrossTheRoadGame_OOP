@@ -6,7 +6,6 @@ class CAMBULANCE:public CVEHICLE
 public:
 	CAMBULANCE();
 	CAMBULANCE(int x, int y);
-	CAMBULANCE(int prevX, int prevY);
 
 	void ambulanceMove(int x, int y);
 	void DrawLeft();
