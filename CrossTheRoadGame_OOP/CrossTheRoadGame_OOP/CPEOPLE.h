@@ -22,6 +22,7 @@ public:
 	bool isLive();
 	bool isDead();
 	void DrawPLayer();
+	void setDead();
 	//void Move(int key)
 	int& getLevel();
 	int getScore();
