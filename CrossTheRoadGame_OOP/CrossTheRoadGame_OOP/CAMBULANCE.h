@@ -9,9 +9,8 @@ public:
 
 	void ambulanceMove(int x, int y);
 	void DrawLeft();
-	void deleteLeftChar();
 	void DrawRight();
-	void deleteRightChar();
+	
 	
 
 };

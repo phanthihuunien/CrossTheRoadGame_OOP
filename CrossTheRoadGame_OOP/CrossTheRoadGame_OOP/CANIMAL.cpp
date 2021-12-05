@@ -27,5 +27,12 @@ void CANIMAL::Move()
 		mX = 3;
 	}
 };
-
+void CANIMAL::Erase() {
+	for (int i = 0; i < 3; ++i) {
+		gotoXY(mX, mY + i);
+		for (int j = 0; j < 4; ++j) {
+			cout << ' ';
+		}
+	}
+}
 

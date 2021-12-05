@@ -10,6 +10,14 @@ void CVEHICLE::Move(){
 	}
 }
 
+void CVEHICLE::Erase() {
+	for (int i = 0; i < 3; ++i) {
+		gotoXY(mX, mY + i);
+		for (int j = 0; j < 4; ++j) {
+			cout << ' ';
+		}
+	}
+}
 CVEHICLE::CVEHICLE() {
 	mX = 0;
 	mY = 0;

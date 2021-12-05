@@ -10,6 +10,7 @@ public:
 	 void Move();
 	 virtual void Draw() {}
 	 virtual void deleteChar(){}
+	 void Erase();
 	CVEHICLE();
 	CVEHICLE(int x, int y);
 	void set(int x, int y);

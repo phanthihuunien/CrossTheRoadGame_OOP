@@ -518,18 +518,18 @@ void CGAME::ambulanceEffect(mutex& mx) {
     lock_guard<mutex> lock(mx);
     if (cn.getY() == 18) {
         for (int i = 0; i < getPeople().getLevel(); ++i)
-            axt[i].CVEHICLE::deleteChar();
+            axt[i].CVEHICLE::Erase();
     }else if (cn.getY() == 14) {
         for (int i = 0; i < getPeople().getLevel(); ++i)
-            axh[i].CVEHICLE::deleteChar();
+            axh[i].CVEHICLE::Erase();
     }
     else if (cn.getY() == 10) {
         for (int i = 0; i < getPeople().getLevel(); ++i)
-            akl[i].CANIMAL::deleteChar();
+            akl[i].CANIMAL::Erase();
     }
     else if (cn.getY() == 6) {
         for (int i = 0; i < getPeople().getLevel(); ++i)
-            ac[i].CANIMAL::deleteChar();
+            ac[i].CANIMAL::Erase();
     }
     gotoXY(getPeople().getX(), getPeople().getY()); cout << "\\ /";
     gotoXY(getPeople().getX(), getPeople().getY() + 1);cout << " X ";
@@ -544,6 +544,7 @@ void CGAME::ambulanceEffect(mutex& mx) {
             else {
                 ambulance.ambulanceMove(ambulance.mX + 2, ambulance.mY);
             }
+           
             ambulance.DrawRight();
             Sleep(50);
         }
@@ -556,6 +557,7 @@ void CGAME::ambulanceEffect(mutex& mx) {
             }
             else {
                 ambulance.ambulanceMove(ambulance.mX - 2, ambulance.mY);
+               
                 ambulance.DrawLeft();
             }
             Sleep(50);
@@ -570,6 +572,7 @@ void CGAME::ambulanceEffect(mutex& mx) {
             else {
                 ambulance.ambulanceMove(ambulance.mX - 2, ambulance.mY);
             }
+           
             ambulance.DrawLeft();
             Sleep(50);
         }
@@ -582,6 +585,7 @@ void CGAME::ambulanceEffect(mutex& mx) {
             }
             else {
                 ambulance.ambulanceMove(ambulance.mX + 2, ambulance.mY);
+            
                 ambulance.DrawRight();
             }
             Sleep(50);

@@ -10,6 +10,7 @@ public:
 	 void Move();
 	 virtual void Draw() {}
 	 virtual void deleteChar() {}
+	 void Erase();
 
 	friend class CGAME;
 
