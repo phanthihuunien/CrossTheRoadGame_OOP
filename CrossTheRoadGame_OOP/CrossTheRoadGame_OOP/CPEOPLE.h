@@ -24,7 +24,7 @@ public:
 	void DrawPLayer();
 	void setDead();
 	//void Move(int key)
-	int& getLevel();
+	int getLevel();
 	int getScore();
 	void LevelUp();
 

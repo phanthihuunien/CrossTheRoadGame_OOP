@@ -42,7 +42,7 @@ void SubThread()
 				cg.getTruckLight().setLight(false);
 			else if (int(time_spanTruck.count()) > 10)
 				startTruck = endTruck;
-			if (int(time_spanCar.count()) < 10)
+			if (int(time_spanCar.count()) < 5)
 				cg.getCarLight().setLight(true);
 			else if (int(time_spanCar.count()) > 5 && int(time_spanCar.count()) < 15)
 				cg.getCarLight().setLight(false);
@@ -57,26 +57,25 @@ void SubThread()
 			hitSth = true;
 		}
 		if (cg.getPeople().isImpactA(cg.getAnimal()[1])) {
-			 cg.getAnimal()[1]->Tell();
+			cg.getAnimal()[1]->Tell();
 			hitSth = true;
 		}
 		if (cg.getPeople().isImpactV(cg.getVehicle()[0])) {
-			 cg.getPeople().soundTruck();
+			cg.getPeople().soundTruck();
 			hitSth = true;
 		}
 		if (cg.getPeople().isImpactV(cg.getVehicle()[1])) {
 			cg.getPeople().soundCar();
 			hitSth = true;
 		}
-		//if (hitSth) {
-		//	cg.getPeople().dieEffect();
-		//	cg.getPeople().setDead();
-		//	//if (sound) cg.ambulanceVoice();
-		//	cg.ambulanceEffect(mx);
-		//	break;
-		//}
+		if (hitSth) {
+			cg.getPeople().setDead();
+			cg.ambulanceSound(mx);
+			cg.ambulanceEffect(mx);
+			break;
+		}
 		cg.updateLevel();
-
+		lv = cg.getPeople().getLevel();
 		// If player is still alive
 		if (!cg.getPeople().isDead())
 		{
@@ -98,14 +97,12 @@ void SubThread()
 		cg.updatePosAnimal();
 		cg.drawGame();
 		mx.unlock();
-		
-		if (cg.getPeople().getY() == 1) {
+
+		if (cg.getPeople().getY() == 2) {
 			cg.getPeople().LevelUp();
 			if (cg.getPeople().isFinish()) {
-				//cg.congrats();
-				//if (sound) cg.congratsVoice();
 				if (cg.askRestart(mx)) {
-					cg.getPeople().getLevel() = 1;
+					//cg.getPeople().getLevel() = 1;
 					if (templv != cg.getPeople().getLevel())
 					{
 						startCar = endCar;
@@ -130,7 +127,7 @@ int main() {
 	ShowConsoleCursor(0);
 	//StartMenu();
 	IngameMenu();
-	/*int temp;
+	int temp;
 	FixConsoleWindow();
 	ShowConsoleCursor(0);
 	thread t1;
@@ -159,6 +156,6 @@ int main() {
 				cg.resumeGame(t1);
 			}
 		}
-	}*/
-return 0;
+	}
+	return 0;
 }

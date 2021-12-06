@@ -99,7 +99,7 @@ void CPEOPLE::DrawPLayer() { // 3x3
 // <U> /U\      
 // / \ / \
 
-int& CPEOPLE::getLevel() {
+int CPEOPLE::getLevel() {
 	return level;
 }
 
@@ -107,7 +107,7 @@ int CPEOPLE::getScore() {
 	return score;
 }
 void CPEOPLE::LevelUp() {
-	if (level < 10) level++;
+	if (level < 10) ++level;
 }
 
 void CPEOPLE::soundCar()
@@ -135,7 +135,7 @@ void CPEOPLE::setDead()
 	mState = 0;
 }
 void CPEOPLE::eraseOldPeople() {
-	gotoXY(mX, mY); cout << "   ";
+	gotoXY(mX, mY-1); cout << "   ";
+	gotoXY(mX, mY ); cout << "   ";
 	gotoXY(mX, mY + 1); cout << "   ";
-	gotoXY(mX, mY + 2); cout << "   ";
 }

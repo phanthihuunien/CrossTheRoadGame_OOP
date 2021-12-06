@@ -21,8 +21,12 @@ CANIMAL::~CANIMAL() {}
 
 void CANIMAL::Move()
 {
-	mX++;
-	if (mX == MAXWIDTH - 2)
+	srand((int)time(0));
+	if (lv < 5) {
+		mX += 1 + rand() % 2;
+	}
+	else mX += lv - rand() % 4 + 1;
+	if (mX >= MAXWIDTH - 2)
 	{
 		mX = 3;
 	}

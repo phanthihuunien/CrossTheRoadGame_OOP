@@ -1,8 +1,10 @@
 ﻿#pragma once
 
-
+#include <algorithm>
+#include<time.h>
 #include <string>
 #include <iostream>
+#include<vector>
 #include<mutex>
 #include <conio.h>
 #include<fstream>
@@ -15,7 +17,6 @@
 #include"CAMBULANCE.h"
 #include"CONSOLE.h"
 #include"Header.h"
-
 using namespace std;
 class CGAME {
 private:
@@ -32,6 +33,10 @@ private:
 	CPEOPLE cn;
 	CTRAFFICLIGHT dxh;
 	CTRAFFICLIGHT dxt;
+	vector<int> xh;
+	vector<int> xt;
+	vector<int> kl;
+	vector<int> c;
 public:
 	CGAME();
 	void updateObstacle();
@@ -39,7 +44,7 @@ public:
 	void drawGame(); //Thực hiện vẽ trò chơi ra màn hình sau khi có dữ liệu
 	void drawBackground();//Vẽ background
 	~CGAME(); // Hủy tài nguyên đã cấp phát
-	CPEOPLE getPeople();//Lấy thông tin người
+	CPEOPLE& getPeople();//Lấy thông tin người
 	CTRUCK* getTruck();
 	CCAR* getCar();
 	CBIRD* getBird();

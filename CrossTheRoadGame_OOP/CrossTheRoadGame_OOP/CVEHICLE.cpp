@@ -3,8 +3,12 @@
 #include "Header.h"
 
 void CVEHICLE::Move(){
-	mX--;
-	if (mX == 2)
+	srand((int)time(0));
+	if (lv < 5) {
+		mX -= 1+ rand() % 3;
+	}
+	else mX -= lv - rand() % 3 + 1;
+	if (mX <= 2)
 	{
 		mX = MAXWIDTH - 2;
 	}

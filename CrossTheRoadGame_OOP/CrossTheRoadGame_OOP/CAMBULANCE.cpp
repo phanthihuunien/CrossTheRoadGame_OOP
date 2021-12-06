@@ -4,35 +4,37 @@ CAMBULANCE::CAMBULANCE(int x, int y):CVEHICLE(x,y),prevX(0),prevY(0) {}
 
 
 void CAMBULANCE::DrawLeft() {
-	for (int i = 0; i < 3; ++i) {
+	for (int i = -1; i < 2; ++i) {
 		gotoXY(prevX, prevY + i);
-		for (int j = 0; j < 4; ++j) {
+		for (int j =-1; j < 3; ++j) {
 			cout << ' ';
 		}
 	}
-	gotoXY(prevX,prevY + 2);
+	gotoXY(prevX,prevY + 1);
 	cout << " ";
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
-	gotoXY(mX + 2, mY);cout << char(254);
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-	gotoXY(mX, mY + 1);cout << char(220) << char(219) << char(219) << char(219);
-	gotoXY(mX, mY + 2);cout << "0  0";
+	SET_COLOR(4);
+	gotoXY(mX + 2, mY-1);cout << char(254);
+	SET_COLOR(7);
+	gotoXY(mX, mY );cout << char(220) << char(219) << char(219) << char(219);
+	gotoXY(mX, mY + 1);cout << "0  0";
 }
 
 void CAMBULANCE::DrawRight() {
-	for (int i = 0; i < 3; ++i) {
+	for (int i = -1; i < 2; ++i) {
 		gotoXY(prevX, prevY + i);
-		for (int j = 0; j < 4; ++j) {
+		for (int j = -1; j < 3; ++j) {
 			cout << ' ';
 		}
 	}
-	gotoXY(prevX, prevY + 2);
+	gotoXY(prevX, prevY + 1);
 	cout << " ";
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
-	gotoXY(mX + 1, mY);cout << char(254);
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-	gotoXY(mX, mY + 1);	cout << char(219) << char(219) << char(219) << char(220);
-	gotoXY(mX, mY + 2);cout << "0  0";
+	SET_COLOR(4);
+
+	gotoXY(mX + 1, mY-1);cout << char(254);
+	SET_COLOR(7);
+
+	gotoXY(mX, mY );	cout << char(219) << char(219) << char(219) << char(220);
+	gotoXY(mX, mY + 1);cout << "0  0";
 
 }
 
