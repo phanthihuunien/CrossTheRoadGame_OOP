@@ -70,7 +70,7 @@ bool CPEOPLE::isImpactA(CANIMAL* const& animal) {
 	return false;
 }
 bool CPEOPLE::isFinish() {
-	if (level == 10) return true;
+	if (level ==8) return true;
 	return false;
 }
 
@@ -99,7 +99,7 @@ void CPEOPLE::DrawPLayer() { // 3x3
 // <U> /U\      
 // / \ / \
 
-int CPEOPLE::getLevel() {
+int& CPEOPLE::getLevel() {
 	return level;
 }
 

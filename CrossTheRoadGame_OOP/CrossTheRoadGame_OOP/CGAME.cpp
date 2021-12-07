@@ -6,7 +6,7 @@ int randPosOb(vector<int> v,int x,int i) {
 	int value = 0;
 	do {
 		value = rand() % (MAXWIDTH + i * 11 + 1 - x) + x;
-	} while (count(v.begin(), v.end(), value));
+	} while (count(v.begin(), v.end(), value)|| count(v.begin(), v.end(), value-1)|| count(v.begin(), v.end(), value+1));
 	v.push_back(value);
 	return value;
 }
@@ -76,6 +76,14 @@ void CGAME::drawGame()
 
 void CGAME::drawBackground() {
 	system("color 80");
+	//gotoXY(MAXWIDTH / 6 + 2, MAXHEIGHT + 2);
+	//cout << "SAVE (L)";
+	//gotoXY(MAXWIDTH / 6 * 2 + 2, MAXHEIGHT + 2);
+	//cout << "LOAD (T)";
+	//gotoXY(MAXWIDTH / 6 * 3 + 2, MAXHEIGHT + 2);
+	//cout << "EXIT (ESC)";
+	//gotoXY(MAXWIDTH / 6 * 4 + 2, MAXHEIGHT + 2);
+	//cout << "PAUSE (P) ";
 	for (int i = 0; i < MAXHEIGHT; i++) {
 		for (int j = 2; j < MAXWIDTH + 1; j++) {
 			SET_COLOR(8);
@@ -168,7 +176,6 @@ bool CGAME::askRestart(mutex& mx)
 		return true;
 	else
 		return false;
-
 }
 void CGAME::updatePosAnimal() {
 	int level = getPeople().getLevel();
@@ -292,9 +299,9 @@ void CGAME::updatePosPeople(char input) {
 	if (input == 'w')
 		cn.Up(4);
 	else if (input == 'a')
-		cn.Left(2);
+		cn.Left(4);
 	else if (input == 'd')
-		cn.Right(2);
+		cn.Right(4);
 	else if (input == 's')
 		cn.Down(4);
 }

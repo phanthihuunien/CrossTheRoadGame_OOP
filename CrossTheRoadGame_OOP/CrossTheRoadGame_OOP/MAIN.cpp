@@ -2,9 +2,10 @@
 #include<iostream>
 #include<random>
 #include<chrono>
-using namespace std;
 #include"CGAME.h"
 #include"CONSOLE.h"
+
+using namespace std;
 
 char MOVING;
 bool IS_RUNNING = true;
@@ -19,35 +20,35 @@ void SubThread()
 {
 	int preLevel = 10;
 	int templv = 10;
-	//cg.drawBackground();
-	auto startTruck = sc.now();
-	auto startCar = sc.now();
+	cg.drawBackground();
+	auto sTruck = sc.now();
+	auto sCar = sc.now();
 	while (IS_RUNNING) {
 		// functions to simulate traffic lights
-		auto endTruck = sc.now();
-		auto endCar = sc.now();
-		auto time_spanTruck = static_cast<chrono::duration<double>>(endTruck - startTruck);
-		auto time_spanCar = static_cast<chrono::duration<double>>(endCar - startCar);
+		auto eTruck = sc.now();
+		auto eCar = sc.now();
+		auto elapsedTruck = static_cast<chrono::duration<double>>(eTruck - sTruck);
+		auto elapsedCar = static_cast<chrono::duration<double>>(eCar - sCar);
 
 		if (templv < cg.getPeople().getLevel())
 		{
-			startCar = endCar;
-			startTruck = endTruck;
+			sCar = eCar;
+			sTruck = eTruck;
 		}
 		else
 		{
-			if (int(time_spanTruck.count()) < 5)
+			if (int(elapsedTruck.count()) < 3)
 				cg.getTruckLight().setLight(true);
-			else if (int(time_spanTruck.count()) > 5 && int(time_spanTruck.count()) < 10)
+			else if (int(elapsedTruck.count()) > 3 && int(elapsedTruck.count()) < 5)
 				cg.getTruckLight().setLight(false);
-			else if (int(time_spanTruck.count()) > 10)
-				startTruck = endTruck;
-			if (int(time_spanCar.count()) < 5)
+			else if (int(elapsedTruck.count()) >7 )
+				sTruck = eTruck;
+			if (int(elapsedCar.count()) < 4)
 				cg.getCarLight().setLight(true);
-			else if (int(time_spanCar.count()) > 5 && int(time_spanCar.count()) < 15)
+			else if (int(elapsedCar.count()) > 4 && int(elapsedCar.count()) < 8)
 				cg.getCarLight().setLight(false);
-			else if (int(time_spanCar.count()) > 15)
-				startCar = endCar;
+			else if (int(elapsedCar.count()) > 8)
+				sCar = eCar;
 		}
 		templv = cg.getPeople().getLevel();
 
@@ -76,11 +77,11 @@ void SubThread()
 		}
 		cg.updateLevel();
 		lv = cg.getPeople().getLevel();
-		// If player is still alive
+
 		if (!cg.getPeople().isDead())
 		{
 			if (MOVING != ' ')
-				// Update player's position from main
+		
 				cg.updatePosPeople(MOVING);
 		}
 		else {
@@ -88,7 +89,6 @@ void SubThread()
 			continue;
 		}
 
-		// Waiting for next move from main
 		MOVING = ' ';
 
 		mx.lock();
@@ -102,17 +102,18 @@ void SubThread()
 			cg.getPeople().LevelUp();
 			if (cg.getPeople().isFinish()) {
 				if (cg.askRestart(mx)) {
-					//cg.getPeople().getLevel() = 1;
+					cg.getPeople().getLevel() = 1;
 					if (templv != cg.getPeople().getLevel())
 					{
-						startCar = endCar;
-						startTruck = endTruck;
+						sCar = eCar;
+						sTruck = eTruck;
 					}
 					cg.resetData();
 				}
 				else
 					break;
 			}
+			MOVING = ' ';
 			cg.resetGame();
 			cg.drawBackground();
 		}
