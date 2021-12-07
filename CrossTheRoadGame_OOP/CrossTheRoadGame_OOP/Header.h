@@ -14,6 +14,7 @@ const int y_bird = 10;
 const int y_dinausor = 6;
 static int choiceMenuStart;
 static int choiceMenuInGame;
+static bool sound = true;
 static int LANE[5] = { 20, 16, 12, 8, 4 };
 static int lv = 1;
 void SubThread();

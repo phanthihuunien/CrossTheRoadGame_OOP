@@ -16,6 +16,7 @@ int level = 1;
 bool backToMainMenu = false;
 int temp = ' ';
 
+
 void SubThread()
 {
 	int preLevel = 10;
@@ -123,12 +124,7 @@ void SubThread()
 
 
 int main() {
-	//choiceInMenu = 0;
-	FixConsoleWindow();
-	ShowConsoleCursor(0);
-	//StartMenu();
-	IngameMenu();
-	int temp;
+	/*int temp;
 	FixConsoleWindow();
 	ShowConsoleCursor(0);
 	thread t1;
@@ -156,6 +152,122 @@ int main() {
 			else if (temp == 'w' || temp == 'a' || temp == 's' || temp == 'd') {
 				cg.resumeGame(t1);
 			}
+		}
+	}
+	return 0;*/
+	ShowConsoleCursor(false);
+	FixConsoleWindow();
+	bool loadGameFromMenu = false;
+	while (1) {
+		if (loadGameFromMenu)
+			choiceMenuStart = 0;
+		else {
+			system("cls");
+			StartMenu();
+			EraseMenu();
+		}
+		thread t1;
+		if (choiceMenuStart == 0) {
+			
+			if (!loadGameFromMenu)
+				cg.resetData();
+			loadGameFromMenu = false;
+			IS_RUNNING = true;
+			cg.getPeople().setAlive();
+			temp = ' ';
+			cg.startGame(t1);
+			bool exitFromSaveGame = false;
+			while (1) {
+				if (exitFromSaveGame) {
+					exitFromSaveGame = false;
+					break;
+				}
+				if (_kbhit()) {
+					temp = _getch();
+					MOVING = temp;
+				}
+				if (!cg.getPeople().isDead()) {
+					if (temp == 27) { //ESC
+						cg.exitGame(&t1, IS_RUNNING);
+						break;
+					}
+					else if (temp == 'p') {
+						cg.pauseGame(t1);
+						while (1) {
+							IngameMenu();//"1.RESUME GAME", "2.SAVE GAME", "3.LOAD GAME", "4.EXIT GAME" 
+							EraseMenu();
+							if (choiceMenuInGame == 0) {
+								cg.drawBackground();
+								cg.resumeGame(t1);
+								break;
+							}
+							else if (choiceMenuInGame == 1) {
+								if (cg.saveGame(mx, true)) {
+									cg.resumeGame(t1);
+									cg.exitGame(&t1, IS_RUNNING);
+									exitFromSaveGame = true;
+									break;
+								}
+							}
+							else if (choiceMenuInGame == 2) {
+								cg.loadGame(mx, true);
+								cg.drawBackground();
+								cg.resumeGame(t1);
+								break;
+							}
+							else if (choiceMenuInGame == 3) {
+									cg.exitGame(&t1, IS_RUNNING);
+									break;
+								
+							}
+						}
+					}
+					else if (temp == 't') {
+						cg.pauseGame(t1);
+						cg.loadGame(mx);
+						cg.drawBackground();
+						cg.resumeGame(t1);
+					}
+					else if (temp == 'l') {
+						cg.pauseGame(t1);
+						if (cg.saveGame(mx)) {
+							cg.resumeGame(t1);
+							cg.exitGame(&t1, IS_RUNNING);
+							break;
+						}
+						cg.resumeGame(t1);
+					}
+					else if (temp == 'w' || temp == 'a' || temp == 's' || temp == 'd') {
+						cg.resumeGame(t1);
+					}
+				}
+				else {
+					Sleep(2000);
+					if (sound)
+						cg.ambulanceSound(mx);
+					Sleep(2000);
+					if (cg.askRestart(mx)) {
+						cg.getPeople() = CPEOPLE();
+						system("cls");
+						IS_RUNNING = true;
+						cg.startGame(t1);
+					}
+					else {
+						cg.exitGame(&t1, IS_RUNNING);
+						break;
+					}
+				}
+				temp = ' ';
+			}
+		}
+		else if (choiceMenuStart == 1) {
+			cg.loadGame(mx, true);
+			system("cls");
+			loadGameFromMenu = true;
+			continue;
+		}
+		else if (choiceMenuStart == 2) {
+			break;
 		}
 	}
 	return 0;

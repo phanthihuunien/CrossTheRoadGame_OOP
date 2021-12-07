@@ -62,7 +62,7 @@ public:
 	// Thực hiện thiết lập lại toàn bộ dữ liệu như lúc đầu
 	void exitGame(thread*,bool&); // Thực hiện thoát Thread 
 	void startGame(thread&); // Thực hiện bắt đầu vào trò chơi
-	void loadGame(mutex&,bool); // Thực hiện tải lại trò chơi đã lưu
+	void loadGame(mutex&,bool = false); // Thực hiện tải lại trò chơi đã lưu
 	//void saveGame(istream); // Thực hiện lưu lại dữ liệu trò chơi
 	bool saveGame(mutex&, bool = false);
 	void pauseGame(thread&); // Tạm dừng Thread
@@ -72,7 +72,7 @@ public:
 	void updatePosAnimal();//Thực hiện cho CDINAUSOR & CBIRD di chuyển
 	void clearMessage(int x, int y, int length);
 	bool checkFileExist(const string& fileName);
-	void writeFile(std::ostream& stream, int x);
+	void writeFile(ostream& stream, int x);
 	int readFile(ifstream& stream);
 	void ambulanceEffect(mutex&);
 	void ambulanceSound(mutex&);

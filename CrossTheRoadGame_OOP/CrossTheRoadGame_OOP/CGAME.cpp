@@ -169,13 +169,23 @@ bool CGAME::askRestart(mutex& mx)
 	char answer;
 	while (true) {
 		answer = _getch();
-		if (answer == 'y' || answer == 'n')
+		if (answer == 'y' || answer == 'n') {
+			
 			break;
+		}
+			
+			
 	}
-	if (answer == 'y')
+	if (answer == 'y') {
+		SET_COLOR(15);
 		return true;
-	else
+	}
+		
+	else {
+		SET_COLOR(15);
 		return false;
+	}
+		
 }
 void CGAME::updatePosAnimal() {
 	int level = getPeople().getLevel();
