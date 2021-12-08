@@ -42,7 +42,7 @@ void SubThread()
 				cg.getTruckLight().setLight(true);
 			else if (int(elapsedTruck.count()) > 3 && int(elapsedTruck.count()) < 5)
 				cg.getTruckLight().setLight(false);
-			else if (int(elapsedTruck.count()) >7 )
+			else if (int(elapsedTruck.count()) > 7)
 				sTruck = eTruck;
 			if (int(elapsedCar.count()) < 4)
 				cg.getCarLight().setLight(true);
@@ -82,7 +82,7 @@ void SubThread()
 		if (!cg.getPeople().isDead())
 		{
 			if (MOVING != ' ')
-		
+
 				cg.updatePosPeople(MOVING);
 		}
 		else {
@@ -124,37 +124,6 @@ void SubThread()
 
 
 int main() {
-	/*int temp;
-	FixConsoleWindow();
-	ShowConsoleCursor(0);
-	thread t1;
-	IS_RUNNING = true;
-	cg.getPeople().setAlive();
-	temp = ' ';
-	cg.startGame(t1);
-	bool exitFromSaveGame = false;
-	while (1) {
-		if (_kbhit()) {
-			temp = _getch();
-			MOVING = temp;
-		}
-		if (!cg.getPeople().isDead()) {
-			if (temp == 27) {
-				cg.exitGame(&t1, IS_RUNNING);
-				break;
-			}
-			else if (temp == 'p') {
-				cg.pauseGame(t1);
-			}
-			else if (temp == 'r') {
-				cg.resumeGame(t1);
-			}
-			else if (temp == 'w' || temp == 'a' || temp == 's' || temp == 'd') {
-				cg.resumeGame(t1);
-			}
-		}
-	}
-	return 0;*/
 	ShowConsoleCursor(false);
 	FixConsoleWindow();
 	bool loadGameFromMenu = false;
@@ -163,12 +132,12 @@ int main() {
 			choiceMenuStart = 0;
 		else {
 			system("cls");
-			StartMenu();
+			choiceMenuStart = StartMenu();
 			EraseMenu();
 		}
 		thread t1;
 		if (choiceMenuStart == 0) {
-			
+
 			if (!loadGameFromMenu)
 				cg.resetData();
 			loadGameFromMenu = false;
@@ -216,9 +185,9 @@ int main() {
 								break;
 							}
 							else if (choiceMenuInGame == 3) {
-									cg.exitGame(&t1, IS_RUNNING);
-									break;
-								
+								cg.exitGame(&t1, IS_RUNNING);
+								break;
+
 							}
 						}
 					}

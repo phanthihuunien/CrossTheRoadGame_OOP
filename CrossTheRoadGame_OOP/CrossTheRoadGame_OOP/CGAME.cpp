@@ -1,12 +1,12 @@
 #include"CGAME.h"
 
 string stringEnd = "Dead, type y to continue or anykey to exit";
-int randPosOb(vector<int> v,int x,int i) {
+int randPosOb(vector<int> v, int x, int i) {
 	srand((int)time(0));
 	int value = 0;
 	do {
 		value = rand() % (MAXWIDTH + i * 11 + 1 - x) + x;
-	} while (count(v.begin(), v.end(), value)|| count(v.begin(), v.end(), value-1)|| count(v.begin(), v.end(), value+1));
+	} while (count(v.begin(), v.end(), value) || count(v.begin(), v.end(), value - 1) || count(v.begin(), v.end(), value + 1) || value <= 2 || value > MAXWIDTH - 2);
 	v.push_back(value);
 	return value;
 }
@@ -24,7 +24,7 @@ CGAME::CGAME()
 	veh[0] = axt;
 	veh[1] = axh;
 	for (int i = 0; i < getPeople().getLevel(); ++i) {
-		ac[i].set(randPosOb(c,y_bird,i), y_bird);
+		ac[i].set(randPosOb(c, y_bird, i), y_bird);
 		akl[i].set(randPosOb(kl, y_dinausor, i), y_dinausor);
 		axt[i].set(randPosOb(xt, y_truck, i), y_truck);
 		axh[i].set(randPosOb(xh, y_car, i), y_car);
@@ -76,14 +76,14 @@ void CGAME::drawGame()
 
 void CGAME::drawBackground() {
 	system("color 80");
-	//gotoXY(MAXWIDTH / 6 + 2, MAXHEIGHT + 2);
-	//cout << "SAVE (L)";
-	//gotoXY(MAXWIDTH / 6 * 2 + 2, MAXHEIGHT + 2);
-	//cout << "LOAD (T)";
-	//gotoXY(MAXWIDTH / 6 * 3 + 2, MAXHEIGHT + 2);
-	//cout << "EXIT (ESC)";
-	//gotoXY(MAXWIDTH / 6 * 4 + 2, MAXHEIGHT + 2);
-	//cout << "PAUSE (P) ";
+	gotoXY(MAXWIDTH / 6 + 2, MAXHEIGHT + 2);
+	cout << "SAVE (L)";
+	gotoXY(MAXWIDTH / 6 * 2 + 2, MAXHEIGHT + 2);
+	cout << "LOAD (T)";
+	gotoXY(MAXWIDTH / 6 * 3 + 2, MAXHEIGHT + 2);
+	cout << "EXIT (ESC)";
+	gotoXY(MAXWIDTH / 6 * 4 + 2, MAXHEIGHT + 2);
+	cout << "PAUSE (P) ";
 	for (int i = 0; i < MAXHEIGHT; i++) {
 		for (int j = 2; j < MAXWIDTH + 1; j++) {
 			SET_COLOR(8);
@@ -170,22 +170,22 @@ bool CGAME::askRestart(mutex& mx)
 	while (true) {
 		answer = _getch();
 		if (answer == 'y' || answer == 'n') {
-			
+
 			break;
 		}
-			
-			
+
+
 	}
 	if (answer == 'y') {
 		SET_COLOR(15);
 		return true;
 	}
-		
+
 	else {
 		SET_COLOR(15);
 		return false;
 	}
-		
+
 }
 void CGAME::updatePosAnimal() {
 	int level = getPeople().getLevel();
@@ -335,7 +335,6 @@ int CGAME::readFile(ifstream& stream)
 	return x;
 }
 bool CGAME::saveGame(mutex& mx, bool inMenu) {
-
 	lock_guard<mutex> lock(mx);
 	int boxWidth = 62, boxHeight = 4, startBoxX = 0, startBoxY = 32;
 	gotoXY(startBoxX, startBoxY);
@@ -368,6 +367,7 @@ bool CGAME::saveGame(mutex& mx, bool inMenu) {
 
 		cin >> fileName;
 		GetAsyncKeyState(VK_RETURN); //Enter
+		fileName = "./saves/" + fileName;
 		clearMessage(startBoxX + (boxWidth - message.size()) / 2, startBoxY + 2, message.size());
 
 		if (checkFileExist(fileName)) {
@@ -435,7 +435,7 @@ bool CGAME::saveGame(mutex& mx, bool inMenu) {
 	for (int i = 0; i < 4; ++i) {
 		clearMessage(startBoxX, startBoxY + i, boxWidth);
 	}
-	if (c == 1) return true;
+	if (c == '1') return true;
 	return false;
 }
 
@@ -473,7 +473,7 @@ void CGAME::loadGame(mutex& mx, bool inMenu)
 		cout << '=';
 	}
 	SET_COLOR(10);
-	string message = "Enter the name to save the game: ", fileName;
+	string message = "Enter the name to load the game: ", fileName;
 	gotoXY(startBoxX + (boxWidth - message.size()) / 2, startBoxY + 1);
 	cout << message;
 
@@ -484,19 +484,21 @@ void CGAME::loadGame(mutex& mx, bool inMenu)
 
 		cin >> fileName;
 		GetAsyncKeyState(VK_RETURN); //Enter
-		clearMessage(startBoxX + (boxWidth - message.size()) / 2, startBoxY + 2, message.size());
+		fileName = "./saves/" + fileName;
+		clearMessage(startBoxX + (boxWidth - message.size()) / 2, startBoxY + 1, message.size());
+		ifstream fin(fileName, ios::in | ios::binary);
 
-		if (checkFileExist(fileName)) {
+		if (!fin) {
 
 			SET_COLOR(11);
-			string message2 = "File do not exists. Do you want to cancel?\n (1. Yes, 0. No): ";
+			string message2 = "File do not exists. Do you want to start new game?\n (1. Yes, 0. No): ";
 			gotoXY(startBoxX, startBoxY + 1);
 
 			cout << message2;
 			int ans;
 			gotoXY(startBoxX + boxWidth / 3, startBoxY + 2);
 			ans = _getch();
-			if (ans == 0) {
+			if (ans != '1') {
 				clearMessage(startBoxX, startBoxY + 1, boxWidth - 2);
 				clearMessage(startBoxX, startBoxY + 2, boxWidth - 2);
 				SET_COLOR(14);
@@ -507,13 +509,13 @@ void CGAME::loadGame(mutex& mx, bool inMenu)
 				SET_COLOR(7);
 				continue;
 			}
+			else break;
 		}
-		ifstream fin(fileName, ios::out | ios::binary);
 		// player
 		getPeople().getX() = readFile(fin);
 		getPeople().getY() = readFile(fin);
 		// level
-		//getPeople().getLevel() = readFile(fin);
+		getPeople().getLevel() = readFile(fin);
 		// trucks
 		for (int i = 0; i < getPeople().getLevel(); ++i) {
 			axt[i].mX = readFile(fin);
@@ -539,7 +541,6 @@ void CGAME::loadGame(mutex& mx, bool inMenu)
 		}
 		fin.close();
 		system("cls");
-		drawBackground();
 		break;
 	}
 }
@@ -547,19 +548,19 @@ void CGAME::ambulanceEffect(mutex& mx) {
 	lock_guard<mutex> lock(mx);
 	if (cn.getY() == 18) {
 		for (int i = 0; i < getPeople().getLevel(); ++i)
-			axt[i].CVEHICLE::Erase();
+			axt[i].deleteChar();
 	}
 	else if (cn.getY() == 14) {
 		for (int i = 0; i < getPeople().getLevel(); ++i)
-			axh[i].CVEHICLE::Erase();
+			axh[i].deleteChar();
 	}
 	else if (cn.getY() == 10) {
 		for (int i = 0; i < getPeople().getLevel(); ++i)
-			akl[i].CANIMAL::Erase();
+			akl[i].deleteChar();
 	}
 	else if (cn.getY() == 6) {
 		for (int i = 0; i < getPeople().getLevel(); ++i)
-			ac[i].CANIMAL::Erase();
+			ac[i].deleteChar();
 	}
 	gotoXY(getPeople().getX(), getPeople().getY() - 1); cout << "\\ /";
 	gotoXY(getPeople().getX(), getPeople().getY()); cout << " X ";

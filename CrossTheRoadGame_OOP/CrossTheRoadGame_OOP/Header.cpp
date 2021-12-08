@@ -10,6 +10,7 @@ void EraseMenu()
 	}
 }
 int StartMenu() {
+	system("color 07");
 	printTitle();
 	int cursor = 0;
 	string Menu[3] = { "1. NEW GAME", "2. LOAD GAME", "3. EXIT" };
@@ -78,6 +79,7 @@ int StartMenu() {
 }
 
 int IngameMenu() {
+	system("color 07");
 	int cursor = 0;
 	string Menu[4] = { "1.RESUME GAME", "2.SAVE GAME", "3.LOAD GAME", "4.EXIT GAME" };
 	while (true) {

@@ -20,10 +20,6 @@
 using namespace std;
 class CGAME {
 private:
-    int carSize;
-	int truckSize;
-	int dinausorSize;
-	int birdSize;
 	CTRUCK* axt;
 	CCAR* axh;
 	CVEHICLE** veh;

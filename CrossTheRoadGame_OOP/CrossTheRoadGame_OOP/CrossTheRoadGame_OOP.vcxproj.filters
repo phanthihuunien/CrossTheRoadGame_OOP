@@ -45,6 +45,9 @@
     <ClInclude Include="CONSOLE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CAMBULANCE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPEOPLE.cpp">
@@ -75,6 +78,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CONSOLE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CAMBULANCE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Header.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
