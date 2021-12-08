@@ -50,7 +50,7 @@ bool CPEOPLE::isImpactV(CVEHICLE* const& vehicle) {
 	if (mY != vehicle[0].mY)
 		return false;
 	for (int i = 0; i < level; i++) {
-		if ((mX <= vehicle[i].mX + 4 && mX >= vehicle[i].mX) || (mX + 2 <= vehicle[i].mX && mX + 2 >= vehicle[i].mX)) {
+		if ((mX <= vehicle[i].mX+3 && mX >= vehicle[i].mX-3) || (mX + 2 <= vehicle[i].mX && mX + 2 >= vehicle[i].mX)) {
 			mState = false;
 			return true;
 		}
@@ -62,7 +62,7 @@ bool CPEOPLE::isImpactA(CANIMAL* const& animal) {
 	if (mY != animal[0].mY)
 		return false;
 	for (int i = 0; i < level; i++) {
-		if ((mX <= animal[i].mX + 4 && mX >= animal[i].mX) || (mX + 2 <= animal[i].mX && mX + 2 >= animal[i].mX)) {
+		if ((mX <= animal[i].mX + 2 && mX >= animal[i].mX-2) || (mX + 2 <= animal[i].mX && mX + 2 >= animal[i].mX)) {
 			mState = false;
 			return true;
 		}
