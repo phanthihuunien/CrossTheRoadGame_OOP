@@ -163,7 +163,7 @@ int main() {
 					else if (temp == 'p') {
 						cg.pauseGame(t1);
 						while (1) {
-							IngameMenu();//"1.RESUME GAME", "2.SAVE GAME", "3.LOAD GAME", "4.EXIT GAME" 
+							choiceMenuInGame=IngameMenu();//"1.RESUME GAME", "2.SAVE GAME", "3.LOAD GAME", "4.EXIT GAME" 
 							EraseMenu();
 							if (choiceMenuInGame == 0) {
 								cg.drawBackground();
