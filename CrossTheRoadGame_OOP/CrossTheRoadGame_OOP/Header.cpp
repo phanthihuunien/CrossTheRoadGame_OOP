@@ -87,12 +87,12 @@ int IngameMenu() {
 		for (int i = 0; i < 4; i++) {
 			if (i == cursor) {
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11);
-				gotoXY(95, 23 + i);
+				gotoXY(50, 12 + i);
 				cout << Menu[i];
 			}
 			else {
 				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-				gotoXY(95, 23 + i);
+				gotoXY(50, 12 + i);
 				cout << Menu[i];
 			}
 		}

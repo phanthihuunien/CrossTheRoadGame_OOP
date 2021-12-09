@@ -383,7 +383,7 @@ bool CGAME::saveGame(mutex& mx, bool inMenu) {
 			if (ans == 0) {
 				clearMessage(startBoxX, startBoxY + 1, boxWidth - 2);
 				clearMessage(startBoxX, startBoxY + 2, boxWidth - 2);
-				SET_COLOR(14);
+				SET_COLOR(7);
 				string message3 = "Enter another file name: ";
 				gotoXY(startBoxX + (boxWidth - message3.size()) / 2, startBoxY + 1);
 				cout << message3;
